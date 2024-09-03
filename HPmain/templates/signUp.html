@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="SignUpstyle.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .student {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+            min-width: 280px;
+        }
+
+        .student h2 {
+            margin: 25px;
+        }
+
+        .student form {
+            width: 100%;
+        }
+
+        .student form div {
+            width: 60%;
+            margin: 20px auto;
+            display: flex;
+            justify-content: center;
+        }
+
+        .student input {
+            width: 100%;
+        }
+
+        input[type="email"],
+        input[type="password"],
+        input[type="text"] {
+            width: 100%;
+            margin: 15px auto;
+            font-size: 1.2rem;
+            padding: 5px 10px;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            background-color: #f0f0f0;
+        }
+
+        .student button {
+            width: 50%;
+            padding: 5px 10px;
+            font-size: 1.3rem;
+            outline: none;
+            background-color: #959595;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+        }
+
+        .student button:hover {
+            background-color: #4c4c4c;
+            transition: 300ms ease-in-out;
+        }
+
+        .cover {
+            position: absolute;
+            height: 100%;
+            width: 50%;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: 500ms ease-in-out;
+        }
+
+        .coverTeacher {
+            top: 0;
+            right: 0;
+        }
+
+        .coverStudent {
+            top: 0;
+            right: 50%;
+        }
+
+        .cover h2 {
+            font-size: 1.8rem;
+        }
+
+        .cover button {
+            width: 25%;
+            padding: 5px 10px;
+            font-size: 1.3rem;
+            border: none;
+            outline: none;
+            background-color: black;
+            color: white;
+            border-radius: 9px;
+            margin: 25px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="student">
+            <h2>Student</h2>
+            <form action="" method="post">
+                <div>
+                    <input type="text" name="" id="" placeholder="Name" required>
+                </div>
+                <div>
+                    <input type="email" name="" id="" placeholder="Email" required>
+                </div>
+                <div>
+                    <input type="password" name="" id="" placeholder="Password" required>
+                </div>
+                <div>
+                    <button type="submit">Sign Up</button>
+                </div>
+            </form>
+        </div>
+        <div class="teacher">
+            <div class="student">
+                <h2>Teacher</h2>
+                <form action="" method="post">
+                    <div>
+                        <input type="text" name="" id="" placeholder="Name" required>
+                    </div>
+                    <div>
+                        <input type="email" name="" id="" placeholder="Email" required>
+                    </div>
+                    <div>
+                        <input type="password" name="" id="" placeholder="Password" required>
+                    </div>
+                    <div>
+                        <button type="submit">Sign Up</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="cover coverStudent" id="cover">
+            <h2 id="coverText">I am a Student</h2>
+            <button id="coverBtn">Sign Up</button>
+        </div>
+    </div>
+    <script>
+        const coverBtn = document.getElementById("coverBtn")
+        const coverText = document.getElementById("coverText")
+        coverBtn.addEventListener("click", () => {
+            document.getElementById("cover").classList.toggle("coverTeacher")
+            document.getElementById("cover").classList.toggle("coverStudent")
+            if (coverText.innerHTML == "I am a Student") {
+                coverText.innerHTML = "I am a Teacher"
+            } else if (coverText.innerHTML == "I am a Teacher") {
+                coverText.innerHTML = "I am a Student"
+            }
+
+        })
+    </script>
+</body>
+
+</html>
