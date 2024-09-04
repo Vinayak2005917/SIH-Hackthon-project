@@ -1,4 +1,4 @@
 from django.shortcuts import render, HttpResponse
 
 def testinfo(request):
-    return HttpResponse("This is haha.")
+    return HttpResponse("fuck vs code")
