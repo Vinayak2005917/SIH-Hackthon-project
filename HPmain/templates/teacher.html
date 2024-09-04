@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            overflow: hidden;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1.5fr 5fr 2fr;
+            height: 100vh;
+        }
+
+        .S1 {
+            background-color: rgb(255, 255, 255);
+        }
+
+        .S2 {
+            background-color: rgb(243, 243, 243);
+            overflow-y: scroll;
+        }
+
+        .S2::-webkit-scrollbar {
+            -webkit-appearance: none;
+            width: 5px;
+        }
+
+        .S2::-webkit-scrollbar-thumb {
+            width: 5px;
+            border-radius: 5px;
+            background-color: rgb(239 239 239);
+        }
+
+        .S2::-webkit-scrollbar-track {
+            background-color: white;
+        }
+
+        .S3 {
+            background-color: rgba(255, 255, 255, 1);
+        }
+
+        .S1 header {
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            margin: 20px auto;
+        }
+
+        .S1 header h1 {
+            font-size: 2rem;
+        }
+
+        .S1 nav {
+            padding: 10px;
+            width: 100%;
+            margin: 10px auto;
+        }
+
+        .S1 nav button {
+            padding-top: 7px;
+            cursor: pointer;
+            width: 95%;
+            margin: 15px auto;
+            height: 50px;
+            display: flex;
+            justify-content: left;
+            padding-left: 15%;
+            border: none;
+            outline: none;
+            align-items: baseline;
+            border-radius: 5px;
+        }
+
+        .inActiveBtn {
+            background-color: transparent;
+        }
+
+        .activeBtn {
+            background-color: rgb(238, 238, 238);
+        }
+
+        .S1 nav button:hover {
+            background-color: rgb(238, 238, 238);
+            transition: 200ms ease-in-out;
+        }
+
+        .S1 nav button img {
+            height: 55%;
+            margin: 5px;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        .S1 nav button p {
+            font-size: 1.3rem;
+            margin: 5px;
+            transform: translateY(-5px);
+        }
+
+        .card {
+            height: 45vh;
+            margin: 20px;
+            padding: 10px;
+        }
+
+        .card canvas {
+            height: 100%;
+            margin: auto;
+        }
+
+        .S3 header {
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            margin: 15px auto;
+        }
+
+        .searchBar {
+            width: 75%;
+            margin: 10px auto;
+            border: 1px solid rgb(184, 184, 184);
+            border-radius: 50px;
+            padding: 2px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .searchBar input {
+            width: 87%;
+            font-size: 1.2rem;
+            padding: 5px 15px;
+            outline: none;
+            border: none;
+        }
+
+        .searchBar button {
+            cursor: pointer;
+            background-color: transparent;
+            width: 10%;
+            outline: none;
+            border: none;
+            border-top-right-radius: 50px;
+            border-bottom-right-radius: 50p;
+        }
+
+        .searchBar button:active {
+            transform: scale(0.98);
+        }
+
+        .searchBar button img {
+            width: 90%;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        .searchBar input::-webkit-search-cancel-button {
+            display: none;
+        }
+
+        .studentBox {
+            width: 95%;
+            margin: auto;
+            height: 75vh;
+            overflow-y: scroll;
+        }
+
+        .studentBox::-webkit-scrollbar {
+            -webkit-appearance: none;
+            width: 5px;
+        }
+
+        .studentBox::-webkit-scrollbar-thumb {
+            background-color: rgb(201, 201, 201);
+            width: 5px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .studentBox::-webkit-scrollbar-thumb:active {
+            background-color: rgb(165, 165, 165);
+        }
+
+        .student {
+            background-color: rgb(243, 243, 243);
+            margin: 10px auto;
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            padding: 3px;
+            width: 80%;
+            padding-left: 15%;
+            border-radius: 7px;
+            cursor: pointer;
+
+        }
+
+        .student:hover {
+            background-color: rgb(234, 233, 233);
+            transition: 200ms ease-in-out;
+        }
+
+        .student img {
+            width: 10%;
+            margin: 5px 15px;
+            border-radius: 50px;
+        }
+
+        .student p {
+            font-size: 1.2rem;
+            margin: 5px 10px;
+        }
+
+        .analysisBox,
+        .home {
+            width: 100%;
+        }
+
+        .analysisBox header,
+        .home header {
+            background-color: white;
+            padding: 30px;
+            width: 100%;
+            text-align: center;
+            /* border-bottom: 1px solid black; */
+        }
+
+        .analysisBox header h1,
+        .home header h1 {
+            font-size: 2.2rem;
+            color: rgb(49, 49, 49);
+        }
+
+        .noStudents {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <section class="S1">
+                <header>
+                    <h1>Hackathon</h1>
+                </header>
+                <nav>
+                    <button class="inActiveBtn" id="homeBtn">
+                        <img src="https://teal-cat-7744f6.netlify.app/media/home%20icon.svg" alt="">
+                        <p>Home</p>
+                    </button>
+                    <button class="inActiveBtn" id="docsBtn">
+                        <img src="https://teal-cat-7744f6.netlify.app/media/file-solid.svg" alt="">
+                        <p>Documents</p>
+                    </button>
+                    <button class="inActiveBtn" id="pathBtn">
+                        <img src="https://teal-cat-7744f6.netlify.app/media/path%20icon.svg" alt="">
+                        <p>Path</p>
+                    </button>
+                    <button class="inActiveBtn" id="inviteBtn">
+                        <img src="https://teal-cat-7744f6.netlify.app/media/invite%20icon.svg" alt="">
+                        <p>Invite</p>
+                    </button>
+                    <button class="inActiveBtn" id="analysisBtn">
+                        <img src="https://teal-cat-7744f6.netlify.app/media/analysis%20icon.svg" alt="">
+                        <p>Analysis</p>
+                    </button>
+                    <button class="inActiveBtn" id="InactiveBtn">
+                        <img src="https://teal-cat-7744f6.netlify.app/media/question-solid.svg" alt="">
+                        <p>Questions</p>
+                    </button>
+                    <button class="inActiveBtn" id="settingsBtn">
+                        <img src="https://teal-cat-7744f6.netlify.app/media/setting%20icon.svg" alt="">
+                        <p>Settings</p>
+                    </button>
+                </nav>
+            </section>
+            <section class="S2">
+                <!-- <div class="home">
+                    <header>
+                        <h1>Teacher Dashboard</h1>
+                    </header>
+                </div> -->
+                <div class="analysisBox">
+                    <header>
+                        <h1>Analysis</h1>
+                    </header>
+                    <div class="analysisBody">
+
+                    </div>
+                </div>
+            </section>
+            <section class="S3">
+                <header>
+                    <h2>Students</h2>
+                </header>
+                <div class="searchBar">
+                    <input type="search" name="" id="search" autocomplete="off">
+                    <button id="searchBtn"><img src="media/search icon.svg" alt=""></button>
+                </div>
+                <div class="studentBox" id="studentBox">
+
+                </div>
+            </section>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="teacher.js"></script>
+    <script>
+        // let LastWeekChart = document.getElementById("LastWeekChart").getContext("2d")
+        // new Chart(LastWeekChart, {
+        //     type: 'bar',
+        //     data: {
+        //         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        //         datasets: [{
+        //             label: '# of Votes',
+        //             data: [12, 19, 3, 5, 2, 3],
+        //             borderWidth: 1
+        //         }]
+        //     },
+        //     options: {
+        //         scales: {
+        //             y: {
+        //                 beginAtZero: true
+        //             }
+        //         }
+        //     }
+        // });
+    </script>
+    <script>
+
+
+
+        // student serach feature
+
+        let StudentNames = ["test"]
+        StudentNames = StudentNames.map((x) => x = x.toLowerCase())
+        let studentBox = document.getElementById("studentBox")
+        let search = document.getElementById("search")
+        let searchBtn = document.getElementById("searchBtn")
+
+        if (StudentNames.length == 0) {
+            studentBox.classList.add("noStudents")
+            let noStudentsText = document.createElement("p")
+            noStudentsText.innerHTML = "No Students"
+            studentBox.appendChild(noStudentsText)
+        } else {
+            for (let i = 0; i < StudentNames.length; i++) {
+                let student = document.createElement("div")
+                student.classList.add("student")
+                let img = document.createElement("img")
+                img.setAttribute("src", "https://teal-cat-7744f6.netlify.app/media/user-solid.svg")
+                student.appendChild(img)
+                let name = document.createElement("p")
+                name.innerHTML = StudentNames[i].charAt(0).toUpperCase() + StudentNames[i].slice(1)
+                student.appendChild(name)
+                studentBox.appendChild(student)
+            }
+        }
+        function studentSearch() {
+            if (StudentNames.length != 0) {
+                let searchInput = String(search.value).trim().toLowerCase()
+                if (searchInput != "") {
+                    studentBox.innerHTML = ""
+                    let filteredStudentNames = StudentNames.filter((x) => x.includes(searchInput))
+                    filteredStudentNames = [...filteredStudentNames.filter((x) => x.slice(0, searchInput.length) == searchInput), ...filteredStudentNames.filter((x) => x.slice(0, searchInput.length) != searchInput)]
+                    for (let i = 0; i < filteredStudentNames.length; i++) {
+                        let student = document.createElement("div")
+                        student.classList.add("student")
+                        let img = document.createElement("img")
+                        img.setAttribute("src", "https://teal-cat-7744f6.netlify.app/media/user-solid.svg")
+                        student.appendChild(img)
+                        let name = document.createElement("p")
+                        name.innerHTML = filteredStudentNames[i].charAt(0).toUpperCase() + filteredStudentNames[i].slice(1)
+                        student.appendChild(name)
+                        studentBox.appendChild(student)
+                    }
+                }
+            }
+        }
+
+        addEventListener("keyup", (e) => {
+            if (e.keyCode == 13 && document.activeElement == search) {
+                studentSearch()
+            }
+        })
+        searchBtn.addEventListener("click", () => {
+            studentSearch()
+        })
+
+
+        search.addEventListener("input", () => {
+            if (StudentNames.length != 0) {
+                if (String(search.value).trim() == "") {
+                    studentBox.innerHTML = ""
+                    for (let i = 0; i < StudentNames.length; i++) {
+                        let student = document.createElement("div")
+                        student.classList.add("student")
+                        let img = document.createElement("img")
+                        img.setAttribute("src", "https://teal-cat-7744f6.netlify.app/media/user-solid.svg")
+                        student.appendChild(img)
+                        let name = document.createElement("p")
+                        name.innerHTML = StudentNames[i].charAt(0).toUpperCase() + StudentNames[i].slice(1)
+                        student.appendChild(name)
+                        studentBox.appendChild(student)
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
