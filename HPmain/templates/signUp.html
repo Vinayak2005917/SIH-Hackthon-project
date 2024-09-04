@@ -132,7 +132,8 @@
     <div class="container">
         <div class="student">
             <h2>Student</h2>
-            <form action="" method="post">
+            <form action="{% url 'studinfo' %}" method="post">
+                {% csrf_token %}
                 <div>
                     <input type="text" name="" id="" placeholder="Name" required>
                 </div>
@@ -150,7 +151,8 @@
         <div class="teacher">
             <div class="student">
                 <h2>Teacher</h2>
-                <form action="" method="post">
+                <form action="{% url 'teachinfo' %}" method="post">
+                    {% csrf_token %}
                     <div>
                         <input type="text" name="" id="" placeholder="Name" required>
                     </div>
