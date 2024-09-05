@@ -1,41 +1,240 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Dashboard</title>
+    <title>Student</title>
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            overflow: hidden;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 1.5fr 5fr 2fr;
+            height: 100vh;
+        }
+
+        .S1 {
+            background-color: rgb(255, 255, 255);
+        }
+
+        .S2 {
+            background-color: rgb(243, 243, 243);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .S3 {
+            background-color: rgba(255, 255, 255, 1);
+            height: 100vh;
+        }
+
+        .S1 header {
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            margin: 20px auto;
+        }
+
+        .S1 header h1 {
+            font-size: 2rem;
+        }
+
+        .S1 nav {
+            padding: 10px;
+            width: 100%;
+            margin: 10px auto;
+        }
+
+        .S1 nav button {
+            padding-top: 7px;
+            cursor: pointer;
+            width: 95%;
+            margin: 15px auto;
+            height: 50px;
+            display: flex;
+            justify-content: left;
+            padding-left: 15%;
+            border: none;
+            outline: none;
+            align-items: baseline;
+            border-radius: 5px;
+            transition: 250ms ease-in-out;
+        }
+
+        .inActiveBtn {
+            background-color: transparent;
+        }
+
+        .activeBtn {
+            background-color: rgb(238, 238, 238);
+        }
+
+        .S1 nav button:hover {
+            background-color: rgb(238, 238, 238);
+            transition: 200ms ease-in-out;
+        }
+
+        .S1 nav button img {
+            height: 55%;
+            margin: 5px;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        .S1 nav button p {
+            font-size: 1.3rem;
+            margin: 5px;
+            transform: translateY(-5px);
+        }
+
+        .box {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .boxBody {
+            padding: 20px;
+        }
+
+        .boxBodyUnderConstruction {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            font-family: 'Arial', sans-serif; /* You can use other fonts as needed */
-            background-color: #f0f0f0; /* Optional: Adds a light background color for better contrast */
+            height: 100%;
         }
 
-        .dashboard {
+        .UnderConstructionBox {
             text-align: center;
-            font-size: 24px;
-            color: #000000;
         }
 
-        h1 {
-            font-family: 'Georgia', serif; /* Elegant font for the heading */
-            margin-bottom: 20px;
+        .UnderConstructionBox img {
+            width: 50%;
+            margin: 20px auto;
         }
 
-        p {
-            font-family: 'Arial', sans-serif; /* Simple, readable font for the content */
+        .subjectBox {
+            padding: 20px;
+        }
+
+        .subject {
+            margin: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 80%;
+            text-align: center;
+        }
+
+        .inActiveBox {
+            display: none;
         }
     </style>
 </head>
+
 <body>
-    <div class="dashboard">
-        <h1>Student Dashboard</h1>
-        <p>Welcome to your dashboard! Here you can manage your courses, check your grades, and more.</p>
-    </div>
+    <main>
+        <div class="container">
+            <section class="S1">
+                <header>
+                    <h1>Hackathon</h1>
+                </header>
+                <nav>
+                    <button class="activeBtn" id="homeBtn">
+                        <img src="https://teal-cat-7744f6.netlify.app/media/home%20icon.svg" alt="">
+                        <p>Home</p>
+                    </button>
+                    <button class="inActiveBtn" id="pathBtn">
+                        <img src="https://teal-cat-7744f6.netlify.app/media/path%20icon.svg" alt="">
+                        <p>Path</p>
+                    </button>
+                    <button class="inActiveBtn" id="settingsBtn">
+                        <img src="https://teal-cat-7744f6.netlify.app/media/setting%20icon.svg" alt="">
+                        <p>Settings</p>
+                    </button>
+                </nav>
+            </section>
+            <section class="S2">
+                <div class="box" id="homeBox">
+<header>
+                        <h1>Student Dashboard</h1>
+                    </header>
+<div class="box inActiveBox" id="pathBox">
+                    <header>
+                        <h1>Learning Path</h1>
+                    </header>
+                    <div class="boxBody boxBodyUnderConstruction">
+                        <div class="UnderConstructionBox">
+                            <img src="https://teal-cat-7744f6.netlify.app/media/const%20with%20grey%20bg.png" alt="">
+                            <b>
+                                <p>Under Construction</p>
+                            </b>
+                        </div>
+                    </div>
+                </div>
+<div class="box inActiveBox" id="settingsBox">
+                    <header>
+                        <h1>Settings</h1>
+                    </header>
+                    <div class="boxBody boxBodyUnderConstruction">
+                        <div class="UnderConstructionBox">
+                            <img src="https://teal-cat-7744f6.netlify.app/media/const%20with%20grey%20bg.png" alt="">
+                            <b>
+                                <p>Under Construction</p>
+                            </b>
+                        </div>
+                    </div>
+                </div>
+            </section>
+<section class="S3">
+                <header>
+                    <h2>Subjects</h2>
+                </header>
+                <div class="subjectBox" id="subjectBox">
+    <div class="subject"><p>Science</p></div>
+<div class="subject"><p>Mathematics</p></div>
+<div class="subject"><p>English</p></div>
+<div class="subject"><p>Hindi</p></div>
+</div>
+            </section>
+        </div>
+    </main>
+<script>
+       let homeBox = document.getElementById("homeBox")
+        let pathBox = document.getElementById("pathBox")
+        let settingsBox = document.getElementById("settingsBox")
+        let Boxes = [homeBox, pathBox, settingsBox]
+                  let homeBtn = document.getElementById("homeBtn")
+        let pathBtn = document.getElementById("pathBtn")
+        let settingsBtn = document.getElementById("settingsBtn")
+        let buttons = [homeBtn, pathBtn, settingsBtn]
+
+        for (let i = 0; i < buttons.length; i++) {
+            let btn = buttons[i]
+            btn.addEventListener("click", () => {
+                for (let k = 0; k < buttons.length; k++) {
+                    buttons[k].classList.remove("activeBtn")
+                    buttons[k].classList.add("inActiveBtn")
+                    Boxes[k].classList.add("inActiveBox")
+                }
+                btn.classList.remove("inActiveBtn")
+                btn.classList.add("activeBtn")
+                Boxes[i].classList.remove("inActiveBox")
+            })
+        }
+    </script>
 </body>
+
 </html>

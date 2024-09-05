@@ -50,6 +50,11 @@
             font-size: 2rem;
         }
 
+        #HeroBtn {
+            cursor: pointer;
+            user-select: none;
+        }
+
         .S1 nav {
             padding: 10px;
             width: 100%;
@@ -361,7 +366,7 @@
             border: 2px dashed #acacac;
             border-radius: 8px;
             padding: 20px;
-            margin: 25px auto;
+            margin: 55px auto;
             position: relative;
             cursor: pointer;
         }
@@ -400,7 +405,7 @@
         .uploadedFile {
             padding: 3px 20px;
             border-radius: 7px;
-            width: 50%;
+            width: 60%;
             background-color: rgb(222, 222, 222);
             border: 1px solid rgb(212, 211, 211);
             margin: 15px auto;
@@ -414,6 +419,199 @@
                 transform: rotate(1turn);
             }
         }
+
+        .ChapterPath {
+            width: 100%;
+            padding: 20px;
+        }
+
+        .ChapterPath h2 {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .stageBox {
+            width: 80%;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .stage:nth-child(odd) {
+            transform: translateX(-90%);
+        }
+
+        .stage:nth-child(even) {
+            transform: translateX(90%);
+        }
+
+        .stage:nth-child(odd):active {
+            transform: translateX(-90%) translateY(6px);
+            box-shadow: 0px 2px 0px #393939;
+        }
+
+        .stage:nth-child(even):active {
+            transform: translateX(90%) translateY(6px);
+            box-shadow: 0px 2px 0px #393939;
+        }
+
+        .stage {
+            width: 40%;
+            height: 200px;
+            /* margin: 20px; */
+            border-radius: 7%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            background-color: #D6D6D6;
+            cursor: pointer;
+            box-shadow: 0px 10px 0px #9b9b9b;
+            transition: 300ms ease-in-out;
+            position: relative;
+        }
+
+        .stage h3 {
+            font-size: 1rem;
+        }
+
+        .stage p {
+            font-weight: 600;
+        }
+
+        .StageremoveBtn {
+            width: 20px;
+            position: absolute;
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            top: 20px;
+            right: 20px;
+            display: none;
+        }
+
+        .displayFlex {
+            display: flex;
+        }
+
+        .chapterInput {
+            width: 100%;
+            padding: 25px;
+            overflow-y: scroll;
+            height: 85vh;
+        }
+
+        .chapterInput::-webkit-scrollbar {
+            -webkit-appearance: none;
+            width: 5px;
+        }
+
+        .chapterInput::-webkit-scrollbar-thumb {
+            width: 5px;
+            border-radius: 5px;
+            background-color: rgb(196, 196, 196);
+        }
+
+        .chapterInput::-webkit-scrollbar-track {
+            width: 5px;
+        }
+
+        .chapterInput input,
+        .chapterInput option {
+            text-align: center;
+        }
+
+        /* .chapterInput::-webkit-scrollbar {
+            -webkit-appearance: none;
+            width: 5px;
+        }
+
+        .chapterInput-webkit-scrollbar-thumb {
+            width: 5px;
+            border-radius: 5px;
+            background-color: rgb(175, 175, 175);
+        } */
+
+        #basicDetails {
+
+            width: 75%;
+            margin: 25px auto;
+
+        }
+
+        #basicDetails-webkit-scrollbar-track {
+            background-color: white;
+        }
+
+        #basicDetails div {
+            width: 60%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 25px auto;
+        }
+
+        #basicDetails div span {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        #basicDetails div input {
+            font-size: 1.2rem;
+            padding: 5px 15px;
+            outline: none;
+            border-radius: 5px;
+            border: none;
+            text-align: center;
+        }
+
+        .topicBox {
+            width: 65%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            margin: 20px auto;
+            border: 2px dashed #D6D6D6;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .topicBox div {
+            margin: 15px auto;
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topicBox div input,
+        .topicBox div select {
+            font-size: 1.1rem;
+            padding: 3px 15px;
+            outline: none;
+            border-radius: 5px;
+            border: none;
+            text-align: center;
+        }
+
+        .ChapterSubmitBtn {
+            margin: auto;
+            background-color: #D6D6D6;
+            font-size: 1.3rem;
+            padding: 4px 20px;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        #topicDetails {
+            text-align: center;
+        }
     </style>
 </head>
 
@@ -422,7 +620,7 @@
         <div class="container">
             <section class="S1">
                 <header>
-                    <h1>Hackathon</h1>
+                    <h1 id="HeroBtn">Hackathon</h1>
                 </header>
                 <nav>
                     <button class="activeBtn" id="homeBtn">
@@ -435,7 +633,7 @@
                     </button>
                     <button class="inActiveBtn" id="inviteBtn">
                         <img src="https://teal-cat-7744f6.netlify.app/media/invite%20icon.svg" alt="">
-                        <p>Upload Documents</p>
+                        <p>Upload Docs</p>
                     </button>
                     <button class="inActiveBtn" id="docsBtn">
                         <img src="https://teal-cat-7744f6.netlify.app/media/file-solid.svg" alt="">
@@ -468,7 +666,6 @@
                                 <p>Ajoy Gupta</p>
                             </div>
                             <div class="teacherProfile">
-                                <!-- <img src="https://teal-cat-7744f6.netlify.app/media/calculator-solid.svg" alt=""> -->
                                 <p>Mathematics</p>
                             </div>
                         </div>
@@ -500,12 +697,57 @@
                     <header>
                         <h1>Learning Path</h1>
                     </header>
-                    <div class="boxBody boxBodyUnderConstruction">
-                        <div class="UnderConstructionBox">
-                            <img src="https://teal-cat-7744f6.netlify.app/media/const%20with%20grey%20bg.png" alt="">
-                            <b>
-                                <p>Under Construction</p>
-                            </b>
+                    <div class="boxBody inActiveBox">
+                        <div class="ChapterPath">
+                            <h2>Matrices and Determinants</h2>
+                            <div class="stageBox">
+                                <div class="stage">
+                                    <h3>Introduction</h3>
+                                    <p>Time: 2hrs</p>
+                                    <button class="StageremoveBtn"><img
+                                            src="https://teal-cat-7744f6.netlify.app/media/trash-solid.svg"></button>
+                                </div>
+                                <div class="stage">
+                                    <h3>Matrix Multiplication</h3>
+                                    <p>Time: 1hrs</p>
+                                    <button class="StageremoveBtn"><img
+                                            src="https://teal-cat-7744f6.netlify.app/media/trash-solid.svg"></button>
+                                </div>
+                                <div class="stage">
+                                    <h3>Determinants</h3>
+                                    <p>Time: 3hrs</p>
+                                    <button class="StageremoveBtn"><img
+                                            src="https://teal-cat-7744f6.netlify.app/media/trash-solid.svg"></button>
+                                </div>
+                                <div class="stage">
+                                    <h3>Inverse of a Matrix</h3>
+                                    <p>Time: 2hrs</p>
+                                    <button class="StageremoveBtn"><img
+                                            src="https://teal-cat-7744f6.netlify.app/media/trash-solid.svg"></button>
+                                </div>
+                                <div class="stage">
+                                    <h3>Applications of Determinants</h3>
+                                    <p>Time: 1hrs</p>
+                                    <button class="StageremoveBtn "><img
+                                            src="https://teal-cat-7744f6.netlify.app/media/trash-solid.svg"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chapterInput">
+                        <div id="basicDetails">
+                            <div>
+                                <span>Chapter Name</span><input type="text" name="" id="chapterName">
+                            </div>
+                            <div>
+                                <span>No of Topics</span><input type="number" name="" id="noOfTopics">
+                            </div>
+                        </div>
+                        <div id="topicDetails">
+
+                            <div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -614,6 +856,11 @@
         });
     </script>
     <script>
+        //Hero Btn
+        let HeroBtn = document.getElementById("HeroBtn")
+        HeroBtn.addEventListener("click", () => {
+            homeBtn.click()
+        })
 
         // student serach feature
 
@@ -710,7 +957,6 @@
         let questionBtn = document.getElementById("questionBtn")
         let settingsBtn = document.getElementById("settingsBtn")
         let buttons = [homeBtn, docsBtn, pathBtn, inviteBtn, analysisBtn, questionBtn, settingsBtn]
-
         for (let i = 0; i < buttons.length; i++) {
             let btn = buttons[i]
             btn.addEventListener("click", () => {
@@ -726,6 +972,7 @@
         }
 
 
+        pathBtn.click()
 
         /// doc upload
         let uploadBtn = document.getElementById("uploadBtn")
@@ -756,7 +1003,7 @@
                     "File": file
                 })
             }
-            fetch('http://localhost:8000/upload/', {
+            fetch('https://reqres.in/api/users', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -773,6 +1020,105 @@
                     loading.classList.add("uploadFinsied")
                 })
                 .catch(error => console.error('Error:', error));
+        })
+
+
+
+        /// adding chapters and stuff
+        let docsList = [
+            "report annual 2023.pdf",
+            "marketing strategy.pdf",
+            "presentation slides.pdf",
+            "meeting notes Sept.pdf",
+            "user manual.pdf",
+            "company logo.png",
+            "team photo.png",
+            "project diagram.png",
+            "product design.png",
+            "banner ad.png",
+            "holiday trip.mp4",
+            "product demo.mp4",
+            "training video.mp4",
+            "company intro.mp4",
+            "customer feedback.mp4",
+            "event schedule.pdf",
+            "business plan.pdf",
+            "infographics.png",
+            "employee list.pdf",
+            "portfolio showcase.pdf",
+            "certificate design.png",
+            "marketing campaign.mp4",
+            "tutorial video.mp4",
+            "performance report.pdf",
+            "process flowchart.png"
+        ];
+
+        let chapterList = []
+        let chapterName = document.getElementById("chapterName")
+        let noOfTopics = document.getElementById("noOfTopics")
+        let topicDetailsBox = document.getElementById("topicDetails")
+        let ChapterSubmitBtn = document.createElement("button")
+        ChapterSubmitBtn.classList.add("ChapterSubmitBtn")
+        ChapterSubmitBtn.innerHTML = "Submit"
+        ChapterSubmitBtn.addEventListener("click", () => {
+            let newChapter = {}
+            newChapter.Name = String(chapterName.value)
+            newChapter.topics = []
+            for (let i = 0; i < topicDetailsBox.children.length-1; i++) {
+                let newTopic = {}
+                newTopic.topicName = (topicDetailsBox.children[i].children[0].children[1].value)
+                newTopic.topicDoc = (topicDetailsBox.children[i].children[1].children[1].value)
+                newTopic.topicTime = (topicDetailsBox.children[i].children[2].children[1].value) + "hrs"
+                newChapter.topics[i] = newTopic
+            }
+            console.log(newChapter)
+        })
+        noOfTopics.addEventListener("input", () => {
+            topicDetailsBox.innerHTML = ""
+            for (let i = 0; i < noOfTopics.value; i++) {
+                let container = document.createElement("div")
+                let container1 = document.createElement("div")
+                let topicNameSpan = document.createElement("span")
+                topicNameSpan.innerHTML = "Topic " + (i + 1) + " name"
+                let topicNameInput = document.createElement("input")
+                topicNameInput.setAttribute("type", "text")
+                container1.appendChild(topicNameSpan)
+                container1.appendChild(topicNameInput)
+                container.appendChild(container1)
+
+                let container2 = document.createElement("div")
+                let docNameSpan = document.createElement("span")
+                docNameSpan.innerHTML = "Select document"
+                let docSelect = document.createElement("select")
+                let defaultOption = document.createElement("option")
+                defaultOption.innerHTML = "--SELECT--"
+                defaultOption.setAttribute("value", null)
+                docSelect.appendChild(defaultOption)
+                for (let k = 0; k < docsList.length; k++) {
+                    let option = document.createElement("option")
+                    option.innerHTML = docsList[k]
+                    option.setAttribute("value", docsList[k])
+                    docSelect.appendChild(option)
+                }
+                container2.appendChild(docNameSpan)
+                container2.appendChild(docSelect)
+                container.appendChild(container2)
+
+                let container3 = document.createElement("div")
+                let timeNameSpan = document.createElement("span")
+                timeNameSpan.innerHTML = "Time (hrs)"
+                let timeInput = document.createElement("input")
+                timeInput.setAttribute("type", "number")
+                container3.appendChild(timeNameSpan)
+                container3.appendChild(timeInput)
+                container.appendChild(container3)
+
+                topicDetailsBox.appendChild(container)
+                container.classList.add("topicBox")
+            }
+            if (noOfTopics.value > 0) {
+                topicDetailsBox.appendChild(ChapterSubmitBtn)
+            }
         })
     </script>
 </body>
