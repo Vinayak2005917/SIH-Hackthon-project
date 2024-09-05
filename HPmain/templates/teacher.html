@@ -348,6 +348,72 @@
             color: #666666;
             font-size: 3rem;
         }
+
+        .uploadBox {
+            width: 70%;
+            margin: auto;
+            text-align: center;
+        }
+
+        .uploadBtn {
+            margin-top: 60px;
+            width: 40%;
+            border: 2px dashed #acacac;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 25px auto;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .uploadBtn img {
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        #inputFile {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%) translateX(-50%);
+            left: 50%;
+            display: none;
+        }
+
+        .loading {
+            width: 40px;
+            height: 40px;
+            background-image: url('https://teal-cat-7744f6.netlify.app/media/loading.png');
+            background-size: cover;
+            background-position: center;
+            animation: rotate 800ms linear infinite;
+        }
+
+        .uploadFinsied {
+            width: 40px;
+            height: 40px;
+            padding: 5px;
+            background-image: url('https://teal-cat-7744f6.netlify.app/media/check-solid.svg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .uploadedFile {
+            padding: 3px 20px;
+            border-radius: 7px;
+            width: 50%;
+            background-color: rgb(222, 222, 222);
+            border: 1px solid rgb(212, 211, 211);
+            margin: 15px auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        @keyframes rotate {
+            to {
+                transform: rotate(1turn);
+            }
+        }
     </style>
 </head>
 
@@ -447,12 +513,12 @@
                     <header>
                         <h1>Upload Documents</h1>
                     </header>
-                    <div class="boxBody boxBodyUnderConstruction">
-                        <div class="UnderConstructionBox">
-                            <img src="https://teal-cat-7744f6.netlify.app/media/const%20with%20grey%20bg.png" alt="">
-                            <b>
-                                <p>Under Construction</p>
-                            </b>
+                    <div class="boxBody">
+                        <div class="uploadBox" id="uploadBox">
+                            <div class="uploadBtn" id="uploadBtn">
+                                <img src="https://teal-cat-7744f6.netlify.app/media/upload.svg" alt="">
+                                <input type="file" name="" id="inputFile">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -644,6 +710,7 @@
         let questionBtn = document.getElementById("questionBtn")
         let settingsBtn = document.getElementById("settingsBtn")
         let buttons = [homeBtn, docsBtn, pathBtn, inviteBtn, analysisBtn, questionBtn, settingsBtn]
+
         for (let i = 0; i < buttons.length; i++) {
             let btn = buttons[i]
             btn.addEventListener("click", () => {
@@ -659,6 +726,54 @@
         }
 
 
+
+        /// doc upload
+        let uploadBtn = document.getElementById("uploadBtn")
+        let inputFile = document.getElementById("inputFile")
+        let uploadBox = document.getElementById("uploadBox")
+        uploadBtn.addEventListener("click", () => {
+            inputFile.click()
+        })
+        inputFile.addEventListener("change", () => {
+            let file = inputFile.files[0]
+            let nameBox = document.createElement("div")
+            nameBox.classList.add("uploadedFile")
+            let fileName = document.createElement("p")
+            let loading = document.createElement("div")
+            loading.classList.add("loading")
+            fileName.innerHTML = file.name
+            nameBox.appendChild(fileName)
+            nameBox.appendChild(loading)
+            uploadBox.insertBefore(nameBox, uploadBox.children[1])
+
+            let options = {
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json"
+                },
+                body: JSON.stringify({
+                    "File_Name": fileName,
+                    "File": file
+                })
+            }
+            fetch('https://reqres.in/api/users', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "name": fileName,
+                    "file": file
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data)
+                    loading.classList.remove("loading")
+                    loading.classList.add("uploadFinsied")
+                })
+                .catch(error => console.error('Error:', error));
+        })
     </script>
 </body>
 
