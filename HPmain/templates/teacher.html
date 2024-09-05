@@ -29,22 +29,10 @@
 
         .S2 {
             background-color: rgb(243, 243, 243);
-            overflow-y: scroll;
-        }
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
 
-        .S2::-webkit-scrollbar {
-            -webkit-appearance: none;
-            width: 5px;
-        }
-
-        .S2::-webkit-scrollbar-thumb {
-            width: 5px;
-            border-radius: 5px;
-            background-color: rgb(239 239 239);
-        }
-
-        .S2::-webkit-scrollbar-track {
-            background-color: white;
         }
 
         .S3 {
@@ -81,6 +69,7 @@
             outline: none;
             align-items: baseline;
             border-radius: 5px;
+            transition: 250ms ease-in-out;
         }
 
         .inActiveBtn {
@@ -223,22 +212,40 @@
             margin: 5px 10px;
         }
 
-        .analysisBox,
-        .home {
+        .box {
             width: 100%;
+            height: 100vh;
         }
 
-        .analysisBox header,
-        .home header {
+        .boxBody {
+            overflow-y: scroll;
+            height: 85vh;
+            padding: 10px;
+        }
+
+        .boxBody::-webkit-scrollbar {
+            -webkit-appearance: none;
+            width: 5px;
+        }
+
+        .boxBody::-webkit-scrollbar-thumb {
+            width: 5px;
+            border-radius: 5px;
+            background-color: rgb(239 239 239);
+        }
+
+        .boxBody::-webkit-scrollbar-track {
+            background-color: white;
+        }
+
+        .box header {
             background-color: white;
             padding: 30px;
             width: 100%;
             text-align: center;
-            /* border-bottom: 1px solid black; */
         }
 
-        .analysisBox header h1,
-        .home header h1 {
+        .box header h1 {
             font-size: 2.2rem;
             color: rgb(49, 49, 49);
         }
@@ -247,6 +254,99 @@
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+
+        .inActiveBox {
+            display: none;
+        }
+
+        .homeSubHeader {
+            width: 100%;
+            padding: 10px;
+            margin: 10px auto;
+            display: flex;
+        }
+
+        .homeSubHeader .teacherProfile {
+            width: 20%;
+            margin: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .teacherProfile img {
+            width: 15%;
+            margin: auto 10px;
+        }
+
+        .profileIcon {
+            border-radius: 50px;
+        }
+
+        .teacherProfile p {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #393939;
+        }
+
+        .canvasCard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .canvasCard div {
+            width: 100%;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .canvasCard canvas {
+            margin: 25px;
+        }
+
+        .canvasCard p {
+            margin: 20px;
+        }
+
+        .path {
+            width: 80%;
+            margin: 20px auto;
+            border: 1px solid red;
+        }
+
+        .checkPoint {
+            width: 100px;
+            height: 100px;
+            border: 5px solid #D6D6D6;
+            border-radius: 50%;
+        }
+
+        .boxBodyUnderConstruction {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .UnderConstructionBox {
+            width: 80%;
+            margin: auto;
+            text-align: center;
+        }
+
+        .UnderConstructionBox img {
+            width: 25%;
+            margin: auto;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        .UnderConstructionBox p {
+            color: #666666;
+            font-size: 3rem;
         }
     </style>
 </head>
@@ -259,13 +359,9 @@
                     <h1>Hackathon</h1>
                 </header>
                 <nav>
-                    <button class="inActiveBtn" id="homeBtn">
+                    <button class="activeBtn" id="homeBtn">
                         <img src="https://teal-cat-7744f6.netlify.app/media/home%20icon.svg" alt="">
                         <p>Home</p>
-                    </button>
-                    <button class="inActiveBtn" id="docsBtn">
-                        <img src="https://teal-cat-7744f6.netlify.app/media/file-solid.svg" alt="">
-                        <p>Documents</p>
                     </button>
                     <button class="inActiveBtn" id="pathBtn">
                         <img src="https://teal-cat-7744f6.netlify.app/media/path%20icon.svg" alt="">
@@ -273,13 +369,17 @@
                     </button>
                     <button class="inActiveBtn" id="inviteBtn">
                         <img src="https://teal-cat-7744f6.netlify.app/media/invite%20icon.svg" alt="">
-                        <p>Invite</p>
+                        <p>Upload Documents</p>
+                    </button>
+                    <button class="inActiveBtn" id="docsBtn">
+                        <img src="https://teal-cat-7744f6.netlify.app/media/file-solid.svg" alt="">
+                        <p>Documents</p>
                     </button>
                     <button class="inActiveBtn" id="analysisBtn">
                         <img src="https://teal-cat-7744f6.netlify.app/media/analysis%20icon.svg" alt="">
                         <p>Analysis</p>
                     </button>
-                    <button class="inActiveBtn" id="InactiveBtn">
+                    <button class="inActiveBtn" id="questionBtn">
                         <img src="https://teal-cat-7744f6.netlify.app/media/question-solid.svg" alt="">
                         <p>Questions</p>
                     </button>
@@ -290,17 +390,109 @@
                 </nav>
             </section>
             <section class="S2">
-                <!-- <div class="home">
+                <div class="box" id="homeBox">
                     <header>
                         <h1>Teacher Dashboard</h1>
                     </header>
-                </div> -->
-                <div class="analysisBox">
+                    <div class="boxBody">
+                        <div class="homeSubHeader">
+                            <div class="teacherProfile">
+                                <img src="https://teal-cat-7744f6.netlify.app/media/user-solid.svg" class="profileIcon"
+                                    alt="">
+                                <p>Ajoy Gupta</p>
+                            </div>
+                            <div class="teacherProfile">
+                                <!-- <img src="https://teal-cat-7744f6.netlify.app/media/calculator-solid.svg" alt=""> -->
+                                <p>Mathematics</p>
+                            </div>
+                        </div>
+                        <div class="canvasCard">
+                            <div>
+
+                            </div>
+                            <div>
+                                <canvas id="noOfStudents"></canvas>
+                                <p>Grades as per last test</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box inActiveBox" id="docBox">
+                    <header>
+                        <h1>Documents</h1>
+                    </header>
+                    <div class="boxBody boxBodyUnderConstruction">
+                        <div class="UnderConstructionBox">
+                            <img src="https://teal-cat-7744f6.netlify.app/media/const%20with%20grey%20bg.png" alt="">
+                            <b>
+                                <p>Under Construction</p>
+                            </b>
+                        </div>
+                    </div>
+                </div>
+                <div class="box inActiveBox" id="pathBox">
+                    <header>
+                        <h1>Learning Path</h1>
+                    </header>
+                    <div class="boxBody boxBodyUnderConstruction">
+                        <div class="UnderConstructionBox">
+                            <img src="https://teal-cat-7744f6.netlify.app/media/const%20with%20grey%20bg.png" alt="">
+                            <b>
+                                <p>Under Construction</p>
+                            </b>
+                        </div>
+                    </div>
+                </div>
+                <div class="box inActiveBox" id="inviteBox">
+                    <header>
+                        <h1>Upload Documents</h1>
+                    </header>
+                    <div class="boxBody boxBodyUnderConstruction">
+                        <div class="UnderConstructionBox">
+                            <img src="https://teal-cat-7744f6.netlify.app/media/const%20with%20grey%20bg.png" alt="">
+                            <b>
+                                <p>Under Construction</p>
+                            </b>
+                        </div>
+                    </div>
+                </div>
+                <div class="box inActiveBox" id="analysisBox">
                     <header>
                         <h1>Analysis</h1>
                     </header>
-                    <div class="analysisBody">
-
+                    <div class="boxBody boxBodyUnderConstruction">
+                        <div class="UnderConstructionBox">
+                            <img src="https://teal-cat-7744f6.netlify.app/media/const%20with%20grey%20bg.png" alt="">
+                            <b>
+                                <p>Under Construction</p>
+                            </b>
+                        </div>
+                    </div>
+                </div>
+                <div class="box inActiveBox" id="questionBox">
+                    <header>
+                        <h1>Questions</h1>
+                    </header>
+                    <div class="boxBody boxBodyUnderConstruction">
+                        <div class="UnderConstructionBox">
+                            <img src="https://teal-cat-7744f6.netlify.app/media/const%20with%20grey%20bg.png" alt="">
+                            <b>
+                                <p>Under Construction</p>
+                            </b>
+                        </div>
+                    </div>
+                </div>
+                <div class="box inActiveBox" id="settingsBox">
+                    <header>
+                        <h1>Settings</h1>
+                    </header>
+                    <div class="boxBody boxBodyUnderConstruction">
+                        <div class="UnderConstructionBox">
+                            <img src="https://teal-cat-7744f6.netlify.app/media/const%20with%20grey%20bg.png" alt="">
+                            <b>
+                                <p>Under Construction</p>
+                            </b>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -310,7 +502,8 @@
                 </header>
                 <div class="searchBar">
                     <input type="search" name="" id="search" autocomplete="off">
-                    <button id="searchBtn"><img src="media/search icon.svg" alt=""></button>
+                    <button id="searchBtn"><img src="https://teal-cat-7744f6.netlify.app/media/search%20icon.svg"
+                            alt=""></button>
                 </div>
                 <div class="studentBox" id="studentBox">
 
@@ -321,29 +514,40 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="teacher.js"></script>
     <script>
-        // let LastWeekChart = document.getElementById("LastWeekChart").getContext("2d")
-        // new Chart(LastWeekChart, {
-        //     type: 'bar',
-        //     data: {
-        //         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        //         datasets: [{
-        //             label: '# of Votes',
-        //             data: [12, 19, 3, 5, 2, 3],
-        //             borderWidth: 1
-        //         }]
-        //     },
-        //     options: {
-        //         scales: {
-        //             y: {
-        //                 beginAtZero: true
-        //             }
-        //         }
-        //     }
-        // });
+        let noOfStudents = document.getElementById("noOfStudents").getContext("2d")
+        new Chart(noOfStudents, {
+            type: 'doughnut',
+            data: {
+                labels: ["A+", "A", "B", "C", "D", "E", "F"],
+                datasets: [{
+                    label: 'No of Students',
+                    data: [10, 35, 55, 7, 17, 5, 2],
+                    borderWidth: 1,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.7)',
+                        'rgba(255, 159, 64, 0.7)',
+                        'rgba(255, 205, 86, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(153, 102, 255, 0.7)',
+                        'rgba(201, 203, 207, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(255, 159, 64)',
+                        'rgb(255, 205, 86)',
+                        'rgb(75, 192, 192)',
+                        'rgb(54, 162, 235)',
+                        'rgb(153, 102, 255)',
+                        'rgb(201, 203, 207)',
+                    ],
+                    borderRadius: 3,
+                    hoverOffset: 5
+                }]
+            }
+        });
     </script>
     <script>
-
-
 
         // student serach feature
 
@@ -421,6 +625,40 @@
                 }
             }
         })
+
+
+        // making sider bar functionable 
+        let homeBox = document.getElementById("homeBox")
+        let docBox = document.getElementById("docBox")
+        let pathBox = document.getElementById("pathBox")
+        let inviteBox = document.getElementById("inviteBox")
+        let analysisBox = document.getElementById("analysisBox")
+        let questionBox = document.getElementById("questionBox")
+        let settingsBox = document.getElementById("settingsBox")
+        let Boxes = [homeBox, docBox, pathBox, inviteBox, analysisBox, questionBox, settingsBox]
+        let homeBtn = document.getElementById("homeBtn")
+        let docsBtn = document.getElementById("docsBtn")
+        let pathBtn = document.getElementById("pathBtn")
+        let analysisBtn = document.getElementById("analysisBtn")
+        let inviteBtn = document.getElementById("inviteBtn")
+        let questionBtn = document.getElementById("questionBtn")
+        let settingsBtn = document.getElementById("settingsBtn")
+        let buttons = [homeBtn, docsBtn, pathBtn, inviteBtn, analysisBtn, questionBtn, settingsBtn]
+        for (let i = 0; i < buttons.length; i++) {
+            let btn = buttons[i]
+            btn.addEventListener("click", () => {
+                for (let k = 0; k < buttons.length; k++) {
+                    buttons[k].classList.remove("activeBtn")
+                    buttons[k].classList.add("inActiveBtn")
+                    Boxes[k].classList.add("inActiveBox")
+                }
+                btn.classList.remove("inActiveBtn")
+                btn.classList.add("activeBtn")
+                Boxes[i].classList.remove("inActiveBox")
+            })
+        }
+
+
     </script>
 </body>
 
