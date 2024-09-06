@@ -1,6 +1,9 @@
 from django.shortcuts import render,HttpResponse
 from django.shortcuts import render, redirect
 from .forms import UploadFileForm
+from rest_framework import viewsets
+from .models import Chapter
+from .serializers import ChapterSerializer
 
 def teachinfo(request):
     print("teacher.html loaded")
@@ -18,3 +21,7 @@ def upload_file(request):
 
 def upload_success(request):
     return render(request, 'upload_success.html')
+
+class ChapterViewSet(viewsets.ModelViewSet):
+    queryset = Chapter.objects.all()
+    serializer_class = ChapterSerializer
