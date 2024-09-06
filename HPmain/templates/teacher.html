@@ -427,6 +427,10 @@
             border-bottom: 2px dashed #D6D6D6;
         }
 
+        .ChapterPath:last-child {
+            border: none;
+        }
+
         .ChapterPath h2 {
             text-align: center;
             margin: 20px;
@@ -512,7 +516,6 @@
             outline: none;
             top: 20px;
             right: 20px;
-            display: none;
         }
 
         .displayFlex {
@@ -607,13 +610,19 @@
         }
 
         .topicBox div input,
-        .topicBox div select {
+        .topicBox div select,
+        .topicBox div textarea {
             font-size: 1.1rem;
             padding: 3px 15px;
             outline: none;
             border-radius: 5px;
             border: none;
             text-align: center;
+        }
+
+        .topicBox div textarea {
+            width: 250px;
+            height: 10rem;
         }
 
         .ChapterSubmitBtn {
@@ -643,6 +652,72 @@
             border: none;
             outline: none;
             cursor: pointer;
+        }
+
+        .topicPopUpBox {
+            width: 100%;
+            height: 100vh;
+            padding-bottom: 7%;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.084);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .topicPopUpBoxOff {
+            width: 100%;
+            height: 100vh;
+            padding-bottom: 7%;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.084);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .topicPopUp {
+            width: 40%;
+            padding: 25px;
+            background-color: white;
+            border-radius: 25px;
+            text-align: center;
+        }
+
+        .topicPopUp h3,
+        .topicPopUp h2 {
+            margin: 25px;
+        }
+
+        .topicPopUp h2 {
+            font-size: 2rem;
+        }
+
+        .topicPopUp h3 {
+            font-size: 1.5rem;
+        }
+
+        #popUpDiscription {
+            margin: 50px 15px;
+        }
+
+        .topicPopUp div {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin: 20px auto;
+        }
+
+        .topicPopUp div p {
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .topicPopUp img {
+            width: 50px;
         }
     </style>
 </head>
@@ -731,41 +806,7 @@
                     </header>
                     <div class="boxBody" id="chapterPathBox">
                         <button id="chapterAddBtn"></button>
-                        <div class="ChapterPath">
-                            <h2>Matrices and Determinants</h2>
-                            <div class="stageBox">
-                                <div class="stage">
-                                    <h3>Introduction</h3>
-                                    <p>Time: 2hrs</p>
-                                    <button class="StageremoveBtn"><img
-                                            src="https://teal-cat-7744f6.netlify.app/media/trash-solid.svg"></button>
-                                </div>
-                                <div class="stage">
-                                    <h3>Matrix Multiplication</h3>
-                                    <p>Time: 1hrs</p>
-                                    <button class="StageremoveBtn"><img
-                                            src="https://teal-cat-7744f6.netlify.app/media/trash-solid.svg"></button>
-                                </div>
-                                <div class="stage">
-                                    <h3>Determinants</h3>
-                                    <p>Time: 3hrs</p>
-                                    <button class="StageremoveBtn"><img
-                                            src="https://teal-cat-7744f6.netlify.app/media/trash-solid.svg"></button>
-                                </div>
-                                <div class="stage">
-                                    <h3>Inverse of a Matrix</h3>
-                                    <p>Time: 2hrs</p>
-                                    <button class="StageremoveBtn"><img
-                                            src="https://teal-cat-7744f6.netlify.app/media/trash-solid.svg"></button>
-                                </div>
-                                <div class="stage">
-                                    <h3>Applications of Determinants</h3>
-                                    <p>Time: 1hrs</p>
-                                    <button class="StageremoveBtn "><img
-                                            src="https://teal-cat-7744f6.netlify.app/media/trash-solid.svg"></button>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                     <div class="chapterInput inActiveBox" id="chapterInput">
                         <h2 id="addheader">Add Chapter</h2>
@@ -852,10 +893,26 @@
 
                 </div>
             </section>
+            <div class="topicPopUpBoxOff" id="topicPopUpBox">
+                <div class="topicPopUp" id="topicPopUp">
+                    <h2 id="popUpChapter">Biomolecules</h2>
+                    <h3 id="popUpTopic">Proteins</h3>
+                    <p id="popUpDiscription">Proteins are essential molecules made of amino acids that perform various
+                        functions in the body, including building and repairing tissues, acting as enzymes, and
+                        supporting immune responses. They are found in foods like meat, fish, and legumes, and are
+                        crucial for overall health and growth.</p>
+                    <div>
+                        <a href="" id="popUpLink"><img src="https://teal-cat-7744f6.netlify.app/media/file-solid.svg"
+                                alt="" id="popUpImg"></a>
+                        <div>
+                            <p id="popUpTime">Time: 2hrs</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="teacher.js"></script>
     <script>
         let noOfStudents = document.getElementById("noOfStudents").getContext("2d")
         new Chart(noOfStudents, {
@@ -1038,7 +1095,7 @@
                     "File": file
                 })
             }
-            fetch('http://localhost:8000', {
+            fetch('https://reqres.in/api/users', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -1100,7 +1157,42 @@
             "process flowchart.png"
         ];
 
-        let chapterList = []
+        let chapterList = [{
+            Name: "Biomolecules",
+            topics: [
+                {
+                    topicName: "DNA",
+                    topicDoc: "dna.mp4",
+                    topicTime: "0.5hrs",
+                    TopicDiscription:"A description is a detailed account or explanation, conveying information, qualities, or characteristics of a subject or object"
+                },
+                {
+                    topicName: "RNA",
+                    topicDoc: "rna.mp4",
+                    topicTime: "1hrs",
+                    TopicDiscription:"A description is a detailed account or explanation, conveying information, qualities, or characteristics of a subject or object"
+                },
+                {
+                    topicName: "Carbohydrates",
+                    topicDoc: "dna.mp4",
+                    topicTime: "0.5hrs",
+                    TopicDiscription:"A description is a detailed account or explanation, conveying information, qualities, or characteristics of a subject or object"
+                },
+                {
+                    topicName: "Proteins",
+                    topicDoc: "proteins.pdf",
+                    topicTime: "2hrs",
+                    TopicDiscription:"A description is a detailed account or explanation, conveying information, qualities, or characteristics of a subject or object"
+                },
+                {
+                    topicName: "Vitamins",
+                    topicDoc: "proteins.pdf",
+                    topicTime: "0.5hrs",
+                    TopicDiscription:"A description is a detailed account or explanation, conveying information, qualities, or characteristics of a subject or object"
+                }
+            ]
+        }]
+
         let chapterName = document.getElementById("chapterName")
         let noOfTopics = document.getElementById("noOfTopics")
         let topicDetailsBox = document.getElementById("topicDetails")
@@ -1116,10 +1208,21 @@
                 newTopic.topicName = (topicDetailsBox.children[i].children[0].children[1].value)
                 newTopic.topicDoc = (topicDetailsBox.children[i].children[1].children[1].value)
                 newTopic.topicTime = (topicDetailsBox.children[i].children[2].children[1].value) + "hrs"
+                newTopic.TopicDiscription = (topicDetailsBox.children[i].children[3].children[1].value)
                 newChapter.topics[i] = newTopic
             }
             console.log(newChapter)
             chapterList.push(newChapter)
+
+
+            let topicPopUpBox = document.getElementById("topicPopUpBox")
+            let popUpChapter = document.getElementById("popUpChapter")
+            let popUpTopic = document.getElementById("popUpTopic")
+            let popUpDiscription = document.getElementById("popUpDiscription")
+            let popUpLink = document.getElementById("popUpLink")
+            let popUpImg = document.getElementById("popUpImg")
+            let popUpTime = document.getElementById("popUpTime")
+            let topicPopUp = document.getElementById("topicPopUp")
 
 
             let chapterDiv = document.createElement("div")
@@ -1140,11 +1243,28 @@
                 stageRemove.classList.add("StageremoveBtn")
                 let stageRemoveImg = document.createElement("img")
                 stageRemoveImg.setAttribute("src", "https://teal-cat-7744f6.netlify.app/media/trash-solid.svg")
+                stageRemove.addEventListener("click", () => {
+                    stage.remove()
+                    newChapter.topics.splice(newChapter.topics.indexOf(newChapter.topics[i]), 1)
+                    if (newChapter.topics.length == 0) {
+                        chapterDiv.remove()
+                    }
+                })
                 stageRemove.appendChild(stageRemoveImg)
 
                 stage.appendChild(topicName)
                 stage.appendChild(timeP)
                 stage.appendChild(stageRemove)
+                stage.addEventListener("click", () => {
+                    topicPopUpBox.classList.remove("topicPopUpBoxOff")
+                    topicPopUpBox.classList.add("topicPopUpBox")
+                    popUpChapter.innerHTML = newChapter.Name
+                    popUpTopic.innerHTML = newChapter.topics[i].topicName
+                    popUpDiscription.innerHTML = newChapter.topics[i].TopicDiscription
+                    popUpLink.setAttribute("src", newChapter.topics[i].topicDoc)
+                    popUpTime.innerHTML = "Time: " + newChapter.topics[i].topicTime
+
+                })
                 stageBox.appendChild(stage)
             }
             chapterDiv.appendChild(stageBox)
@@ -1154,6 +1274,59 @@
             chapterPathBox.classList.remove("inActiveBox")
             topicDetailsBox.innerHTML = ""
         })
+
+
+        for (let x = 0; x < chapterList.length; x++) {
+            let newChapter = chapterList[x]
+            let chapterDiv = document.createElement("div")
+            chapterDiv.classList.add("ChapterPath")
+            let chapterH2 = document.createElement("h2")
+            chapterH2.innerHTML = newChapter.Name
+            chapterDiv.appendChild(chapterH2)
+            let stageBox = document.createElement("div")
+            stageBox.classList.add("stageBox")
+            for (let i = 0; i < newChapter.topics.length; i++) {
+                let stage = document.createElement("div")
+                stage.classList.add("stage")
+                let topicName = document.createElement("h3")
+                topicName.innerHTML = newChapter.topics[i].topicName
+                let timeP = document.createElement("p")
+                timeP.innerHTML = "Time: " + newChapter.topics[i].topicTime
+                let stageRemove = document.createElement("button")
+                stageRemove.classList.add("StageremoveBtn")
+                let stageRemoveImg = document.createElement("img")
+                stageRemoveImg.setAttribute("src", "https://teal-cat-7744f6.netlify.app/media/trash-solid.svg")
+                stageRemove.addEventListener("click", () => {
+                    stage.remove()
+                    newChapter.topics.splice(newChapter.topics.indexOf(newChapter.topics[i]), 1)
+                    if (newChapter.topics.length == 0) {
+                        chapterDiv.remove()
+                    }
+                })
+                stageRemove.appendChild(stageRemoveImg)
+
+                stage.appendChild(topicName)
+                stage.appendChild(timeP)
+                stage.appendChild(stageRemove)
+
+                stage.addEventListener("click", () => {
+                    topicPopUpBox.classList.remove("topicPopUpBoxOff")
+                    topicPopUpBox.classList.add("topicPopUpBox")
+                    popUpChapter.innerHTML = newChapter.Name
+                    popUpTopic.innerHTML = newChapter.topics[i].topicName
+                    popUpDiscription.innerHTML = newChapter.topics[i].TopicDiscription
+                    popUpLink.setAttribute("src", newChapter.topics[i].topicDoc)
+                    popUpTime.innerHTML = "Time: " + newChapter.topics[i].topicTime
+
+                })
+
+                stageBox.appendChild(stage)
+            }
+            chapterDiv.appendChild(stageBox)
+            chapterPathBox.appendChild(chapterDiv)
+        }
+
+
         noOfTopics.addEventListener("input", () => {
             topicDetailsBox.innerHTML = ""
             for (let i = 0; i < noOfTopics.value; i++) {
@@ -1193,6 +1366,15 @@
                 container3.appendChild(timeNameSpan)
                 container3.appendChild(timeInput)
                 container.appendChild(container3)
+
+                let container4 = document.createElement("div")
+                let discriptionSpan = document.createElement("span")
+                discriptionSpan.innerHTML = "Discription"
+                let discriptionInput = document.createElement("textarea")
+                container4.appendChild(discriptionSpan)
+                container4.appendChild(discriptionInput)
+                container.appendChild(container4)
+
 
                 topicDetailsBox.appendChild(container)
                 container.classList.add("topicBox")
