@@ -103,6 +103,3 @@ def process_file(file_path):
         return pdf_to_csv(file_path)
     else:
         return {"status": "error", "message": "Unsupported file format."}
-
-
-
