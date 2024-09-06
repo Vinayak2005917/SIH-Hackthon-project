@@ -1,0 +1,78 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.LoginBox{
+    margin: auto;
+    width: 50%;
+    min-width: 280px;
+    text-align: center;
+    padding: 20px;
+}
+.LoginBox h2,h3{
+    margin: 25px;
+}
+.LoginBox form div{
+    width: 60%;
+    margin: 25px auto;
+    display: flex;
+    justify-content: center;
+}
+.LoginBox form{
+    margin-bottom: 50px;
+}
+#RememberMeBox{
+    display: flex;
+    justify-content: left;
+}
+#forgotPassBox{
+    display: flex;
+    justify-content: right;
+}
+#forgotPassBox a{
+    text-decoration: none;
+    color: rgb(115 94 221);
+}
+#forgotPassBox a:hover{
+    color: #4025ED;
+    transition: 100ms ease-in-out;
+}
+input[type="email"],input[type="password"]{
+    width: 100%;
+    margin: 15px auto;
+    font-size: 1.2rem;
+    padding: 5px 10px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+} 
+input[type="checkbox"]{
+    margin-right: 5px;
+}
+button[type="submit"]{
+    width: 50%;
+    padding: 5px 10px;
+    font-size: 1.3rem;
+    outline: none;
+    background-color: #959595 ;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+}
+button[type="submit"]:hover{
+    background-color: #4c4c4c ;
+    transition: 300ms ease-in-out;
+}
+.signUpText{
+    margin: 15px auto;
+}

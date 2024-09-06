@@ -18,13 +18,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: black;
+            background-color: white;
 
         }
 
         video {
             border-radius: 9px;
-            height: 95vh;
+            height: 75vh;
             margin: auto;
             outline: none;
         }
@@ -32,7 +32,8 @@
 </head>
 
 <body>
-    <video src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" autoplay controls></video>
+    {% load static %}
+    <video src="{% static 'Untitled.mp4' %}" autoplay controls></video>
 </body>
 
 </html>
