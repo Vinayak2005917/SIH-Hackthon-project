@@ -4,7 +4,7 @@ from .models import Chapter, Topic
 class TopicSerializer(serializers.ModelSerializer):
     class Meta:
         model = Topic
-        fields = ['topic_name', 'topic_doc', 'topic_time']
+        fields = ['topic_name', 'topic_doc', 'topic_desc', 'topic_time']
 
 class ChapterSerializer(serializers.ModelSerializer):
     topics = TopicSerializer(many=True)
