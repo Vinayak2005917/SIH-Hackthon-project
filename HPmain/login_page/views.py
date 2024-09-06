@@ -5,3 +5,6 @@ def login(request):
 
 def toteach(request):
     return HttpResponseRedirect('teacher/')
+
+def teachinfo(request):
+    return render(request, 'teacher.html')
