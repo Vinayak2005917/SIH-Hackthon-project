@@ -1,4 +1,4 @@
-
+# %%
 import pandas as pd
 import re
 import os
@@ -6,12 +6,16 @@ from PyPDF2 import PdfReader
 from PyPDF2.errors import PdfReadError
 import bibtexparser
 from django.http import JsonResponse
+import csv
 
 def read_from_excel(file_path):
     try:
         excel = pd.read_excel(file_path)
+        data_list = excel.values.tolist()  # Convert to list
         csv_file_path = "contents.csv"
-        excel.to_csv(csv_file_path, index=False)
+        with open(csv_file_path, 'w', newline='') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerows(data_list)
         return {"status": "success", "message": f"File saved as {csv_file_path}"}
     except FileNotFoundError:
         return {"status": "error", "message": f"The file does not exist at {file_path}"}
@@ -27,9 +31,11 @@ def extract_text_from_bibtex(bibtex_file_path):
         if not entries:
             return {"status": "error", "message": "No entries found in the BibTeX file."}
             
-        df = pd.DataFrame(entries)
+        data_list = [list(entry.values()) for entry in entries]  # Convert to list of lists
         csv_file_path = "contents3.csv"
-        df.to_csv(csv_file_path, index=False)
+        with open(csv_file_path, 'w', newline='') as csvfile:
+            writer = csv.writer(csvfile)
+            writer.writerows(data_list)
         return {"status": "success", "message": f"Data successfully written to {csv_file_path}"}
 
     except FileNotFoundError:
@@ -56,29 +62,28 @@ def extract_text_from_pdf(pdfpath):
     except Exception:
         return None
 
-def table_conversion(text):
+def text_to_list(text):
     rows = text.split('\n')
-    table_data = []
+    data_list = []
     
     for row in rows:
         columns = re.split(r'\s+', row.strip())
         if len(columns) > 1:
-            table_data.append(columns)
+            data_list.append(columns)
     
-    headers = table_data[0] if table_data else []
-    data = table_data[1:] if len(table_data) > 1 else []
-
-    return pd.DataFrame(data, columns=headers)
+    return data_list
 
 def pdf_to_csv(pdfpath):
     try:
         text = extract_text_from_pdf(pdfpath)
         if not text:
             raise ValueError("No text extracted from the PDF.")
-        table_df = table_conversion(text)
-        if not table_df.empty:
+        data_list = text_to_list(text)
+        if data_list:
             csv_file_path = "contents2.csv"
-            table_df.to_csv(csv_file_path, index=False)
+            with open(csv_file_path, 'w', newline='') as csvfile:
+                writer = csv.writer(csvfile)
+                writer.writerows(data_list)
             return {"status": "success", "message": f"Data successfully written to {csv_file_path}"}
         else:
             return {"status": "error", "message": "No table data found in the PDF."}
