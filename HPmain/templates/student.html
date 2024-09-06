@@ -145,95 +145,100 @@
 </head>
 
 <body>
-    <main>
-        <div class="container">
-            <section class="S1">
+<main>
+    <div class="container">
+        <section class="S1">
+            <header>
+                <h1>Hackathon</h1>
+            </header>
+            <nav>
+                <button class="activeBtn" id="homeBtn">
+                    <img src="https://teal-cat-7744f6.netlify.app/media/home%20icon.svg" alt="">
+                    <p>Home</p>
+                </button>
+                <button class="inActiveBtn" id="pathBtn">
+                    <img src="https://teal-cat-7744f6.netlify.app/media/path%20icon.svg" alt="">
+                    <p>Path</p>
+                </button>
+                <button class="inActiveBtn" id="settingsBtn">
+                    <img src="https://teal-cat-7744f6.netlify.app/media/setting%20icon.svg" alt="">
+                    <p>Settings</p>
+                </button>
+            </nav>
+        </section>
+        <section class="S2">
+            <div class="box" id="studentDashboard">
+                <header style="text-align: center;">
+    <h1>Student Dashboard</h1>
+</header>
+            </div>
+            <div class="box inActiveBox" id="pathBox">
                 <header>
-                    <h1>Hackathon</h1>
+                    <h1>Learning Path</h1>
                 </header>
-                <nav>
-                    <button class="activeBtn" id="homeBtn">
-                        <img src="https://teal-cat-7744f6.netlify.app/media/home%20icon.svg" alt="">
-                        <p>Home</p>
-                    </button>
-                    <button class="inActiveBtn" id="pathBtn">
-                        <img src="https://teal-cat-7744f6.netlify.app/media/path%20icon.svg" alt="">
-                        <p>Path</p>
-                    </button>
-                    <button class="inActiveBtn" id="settingsBtn">
-                        <img src="https://teal-cat-7744f6.netlify.app/media/setting%20icon.svg" alt="">
-                        <p>Settings</p>
-                    </button>
-                </nav>
-            </section>
-            <section class="S2">
-                <div class="box" id="homeBox">
-<header>
-                        <h1>Student Dashboard</h1>
-                    </header>
-<div class="box inActiveBox" id="pathBox">
-                    <header>
-                        <h1>Learning Path</h1>
-                    </header>
-                    <div class="boxBody boxBodyUnderConstruction">
-                        <div class="UnderConstructionBox">
-                            <img src="https://teal-cat-7744f6.netlify.app/media/const%20with%20grey%20bg.png" alt="">
-                            <b>
-                                <p>Under Construction</p>
-                            </b>
-                        </div>
+                <div class="boxBody boxBodyUnderConstruction">
+                    <div class="UnderConstructionBox">
+                        <img src="https://teal-cat-7744f6.netlify.app/media/const%20with%20grey%20bg.png" alt="">
+                        <b>
+                            <p>Under Construction</p>
+                        </b>
                     </div>
                 </div>
-<div class="box inActiveBox" id="settingsBox">
-                    <header>
-                        <h1>Settings</h1>
-                    </header>
-                    <div class="boxBody boxBodyUnderConstruction">
-                        <div class="UnderConstructionBox">
-                            <img src="https://teal-cat-7744f6.netlify.app/media/const%20with%20grey%20bg.png" alt="">
-                            <b>
-                                <p>Under Construction</p>
-                            </b>
-                        </div>
+            </div>
+            <div class="box inActiveBox" id="settingsBox">
+                <header>
+                    <h1>Settings</h1>
+                </header>
+                <div class="boxBody boxBodyUnderConstruction">
+                    <div class="UnderConstructionBox">
+                        <img src="https://teal-cat-7744f6.netlify.app/media/const%20with%20grey%20bg.png" alt="">
+                        <b>
+                            <p>Under Construction</p>
+                        </b>
                     </div>
                 </div>
-            </section>
-<section class="S3">
-                <header>
-                    <h2>Subjects</h2>
-                </header>
-                <div class="subjectBox" id="subjectBox">
-    <div class="subject"><p>Science</p></div>
-<div class="subject"><p>Mathematics</p></div>
-<div class="subject"><p>English</p></div>
-<div class="subject"><p>Hindi</p></div>
-</div>
-            </section>
-        </div>
-    </main>
+            </div>
+        </section>
+        <section class="S3">
+            <header>
+       <h2 style="text-align: center;">Subjects</h2>
+    </header>
+            <div class="subjectBox" id="subjectBox">
+                <div class="subject"><p>Science</p></div>
+                <div class="subject"><p>Mathematics</p></div>
+                <div class="subject"><p>English</p></div>
+                <div class="subject"><p>Hindi</p></div>
+            </div>
+        </section>
+    </div>
+</main>
 <script>
-       let homeBox = document.getElementById("homeBox")
-        let pathBox = document.getElementById("pathBox")
-        let settingsBox = document.getElementById("settingsBox")
-        let Boxes = [homeBox, pathBox, settingsBox]
-                  let homeBtn = document.getElementById("homeBtn")
-        let pathBtn = document.getElementById("pathBtn")
-        let settingsBtn = document.getElementById("settingsBtn")
-        let buttons = [homeBtn, pathBtn, settingsBtn]
+let pathBox = document.getElementById("pathBox")
+let settingsBox = document.getElementById("settingsBox")
+let Boxes = [pathBox, settingsBox]
 
-        for (let i = 0; i < buttons.length; i++) {
-            let btn = buttons[i]
-            btn.addEventListener("click", () => {
-                for (let k = 0; k < buttons.length; k++) {
-                    buttons[k].classList.remove("activeBtn")
-                    buttons[k].classList.add("inActiveBtn")
-                    Boxes[k].classList.add("inActiveBox")
-                }
-                btn.classList.remove("inActiveBtn")
-                btn.classList.add("activeBtn")
-                Boxes[i].classList.remove("inActiveBox")
-            })
+let homeBtn = document.getElementById("homeBtn")
+let pathBtn = document.getElementById("pathBtn")
+let settingsBtn = document.getElementById("settingsBtn")
+let buttons = [homeBtn, pathBtn, settingsBtn]
+
+for (let i = 0; i < buttons.length; i++) {
+    let btn = buttons[i]
+    btn.addEventListener("click", () => {
+        for (let k = 0; k < buttons.length; k++) {
+            buttons[k].classList.remove("activeBtn")
+            buttons[k].classList.add("inActiveBtn")
+            if (k < Boxes.length) {
+                Boxes[k].classList.add("inActiveBox")
+            }
         }
+        btn.classList.remove("inActiveBtn")
+        btn.classList.add("activeBtn")
+        if (i > 0) {
+            Boxes[i - 1].classList.remove("inActiveBox")
+        }
+    })
+}
     </script>
 </body>
 

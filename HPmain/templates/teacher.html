@@ -423,11 +423,33 @@
         .ChapterPath {
             width: 100%;
             padding: 20px;
+            padding-bottom: 40px;
+            border-bottom: 2px dashed #D6D6D6;
         }
 
         .ChapterPath h2 {
             text-align: center;
             margin: 20px;
+            margin-bottom: 35px;
+        }
+
+        #chapterPathBox {
+            position: relative;
+        }
+
+        #chapterAddBtn {
+            background-image: url(https://teal-cat-7744f6.netlify.app/media/file-circle-plus-solid.svg);
+            background-position: center;
+            background-size: cover;
+            padding: 2px;
+            border: none;
+            outline: none;
+            width: 35px;
+            height: 30px;
+            position: absolute;
+            top: 12px;
+            right: 10px;
+            cursor: pointer;
         }
 
         .stageBox {
@@ -502,6 +524,7 @@
             padding: 25px;
             overflow-y: scroll;
             height: 85vh;
+            position: relative;
         }
 
         .chapterInput::-webkit-scrollbar {
@@ -524,16 +547,11 @@
             text-align: center;
         }
 
-        /* .chapterInput::-webkit-scrollbar {
-            -webkit-appearance: none;
-            width: 5px;
+        #addheader {
+            text-align: center;
+            margin: 20px;
+            padding: 10px;
         }
-
-        .chapterInput-webkit-scrollbar-thumb {
-            width: 5px;
-            border-radius: 5px;
-            background-color: rgb(175, 175, 175);
-        } */
 
         #basicDetails {
 
@@ -611,6 +629,20 @@
 
         #topicDetails {
             text-align: center;
+        }
+
+        #chapterInputCross {
+            background-image: url(https://teal-cat-7744f6.netlify.app/media/circle-xmark-solid.svg);
+            background-size: cover;
+            background-position: center;
+            width: 35px;
+            height: 35px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border: none;
+            outline: none;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -697,7 +729,8 @@
                     <header>
                         <h1>Learning Path</h1>
                     </header>
-                    <div class="boxBody inActiveBox">
+                    <div class="boxBody" id="chapterPathBox">
+                        <button id="chapterAddBtn"></button>
                         <div class="ChapterPath">
                             <h2>Matrices and Determinants</h2>
                             <div class="stageBox">
@@ -734,7 +767,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="chapterInput">
+                    <div class="chapterInput inActiveBox" id="chapterInput">
+                        <h2 id="addheader">Add Chapter</h2>
                         <div id="basicDetails">
                             <div>
                                 <span>Chapter Name</span><input type="text" name="" id="chapterName">
@@ -749,6 +783,7 @@
 
                             </div>
                         </div>
+                        <button id="chapterInputCross"></button>
                     </div>
                 </div>
                 <div class="box inActiveBox" id="inviteBox">
@@ -1025,6 +1060,18 @@
 
 
         /// adding chapters and stuff
+        let chapterAddBtn = document.getElementById("chapterAddBtn")
+        let chapterInputCross = document.getElementById("chapterInputCross")
+        let chapterInput = document.getElementById("chapterInput")
+        let chapterPathBox = document.getElementById("chapterPathBox")
+        chapterAddBtn.addEventListener("click", () => {
+            chapterPathBox.classList.add("inActiveBox")
+            chapterInput.classList.remove("inActiveBox")
+        })
+        chapterInputCross.addEventListener("click", () => {
+            chapterInput.classList.add("inActiveBox")
+            chapterPathBox.classList.remove("inActiveBox")
+        })
         let docsList = [
             "report annual 2023.pdf",
             "marketing strategy.pdf",
@@ -1064,7 +1111,7 @@
             let newChapter = {}
             newChapter.Name = String(chapterName.value)
             newChapter.topics = []
-            for (let i = 0; i < topicDetailsBox.children.length-1; i++) {
+            for (let i = 0; i < topicDetailsBox.children.length - 1; i++) {
                 let newTopic = {}
                 newTopic.topicName = (topicDetailsBox.children[i].children[0].children[1].value)
                 newTopic.topicDoc = (topicDetailsBox.children[i].children[1].children[1].value)
@@ -1072,6 +1119,40 @@
                 newChapter.topics[i] = newTopic
             }
             console.log(newChapter)
+            chapterList.push(newChapter)
+
+
+            let chapterDiv = document.createElement("div")
+            chapterDiv.classList.add("ChapterPath")
+            let chapterH2 = document.createElement("h2")
+            chapterH2.innerHTML = newChapter.Name
+            chapterDiv.appendChild(chapterH2)
+            let stageBox = document.createElement("div")
+            stageBox.classList.add("stageBox")
+            for (let i = 0; i < newChapter.topics.length; i++) {
+                let stage = document.createElement("div")
+                stage.classList.add("stage")
+                let topicName = document.createElement("h3")
+                topicName.innerHTML = newChapter.topics[i].topicName
+                let timeP = document.createElement("p")
+                timeP.innerHTML = "Time: " + newChapter.topics[i].topicTime
+                let stageRemove = document.createElement("button")
+                stageRemove.classList.add("StageremoveBtn")
+                let stageRemoveImg = document.createElement("img")
+                stageRemoveImg.setAttribute("src", "https://teal-cat-7744f6.netlify.app/media/trash-solid.svg")
+                stageRemove.appendChild(stageRemoveImg)
+
+                stage.appendChild(topicName)
+                stage.appendChild(timeP)
+                stage.appendChild(stageRemove)
+                stageBox.appendChild(stage)
+            }
+            chapterDiv.appendChild(stageBox)
+            chapterPathBox.appendChild(chapterDiv)
+
+            chapterInput.classList.add("inActiveBox")
+            chapterPathBox.classList.remove("inActiveBox")
+            topicDetailsBox.innerHTML = ""
         })
         noOfTopics.addEventListener("input", () => {
             topicDetailsBox.innerHTML = ""

@@ -10,4 +10,7 @@ urlpatterns = [
     path("teacher/", include("teacher.urls")),
     path("student/", include("student.urls")),
     path("sadmin/", include("sadmin.urls")),
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
