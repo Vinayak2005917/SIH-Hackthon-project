@@ -6,7 +6,6 @@ from .models import Chapter
 from .serializers import ChapterSerializer
 
 def teachinfo(request):
-    print("teacher.html loaded")
     return render(request, 'teacher.html')
 
 def upload_file(request):
