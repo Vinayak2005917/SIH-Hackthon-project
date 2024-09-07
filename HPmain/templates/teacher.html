@@ -955,7 +955,6 @@
         })
 
         // student serach feature
-
         let StudentNames = ["test"]
         StudentNames = StudentNames.map((x) => x = x.toLowerCase())
         let studentBox = document.getElementById("studentBox")
@@ -1095,7 +1094,7 @@
                     "File": file
                 })
             }
-            fetch('"login/teachinfo/upload_file"', {
+            fetch('https://reqres.in/api/users', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
