@@ -117,7 +117,7 @@
     </head>
     <body>
         <div class="banner">
-            <video autoplay loop muted play-inline>
+            <video autoplay loop muted playsinline>
                 {% load static %}
                 <source src="https://teal-cat-7744f6.netlify.app/media/kaala%20ched.mp4" type="video/mp4">
             </video>
@@ -126,13 +126,13 @@
                 <img class="logo" src="https://teal-cat-7744f6.netlify.app/media/logo.png">
                 <ul>
                     <li><a href="#">What's This</a></li>
-                    <li><a href="#">Credits</a></li>
+                    <li><a href="{% url 'credits' %}">Contributors</a></li>
                 </ul>
             </div>
             <div class="content">
                 <h1>EXPLORE PATHS</h1>
                 <div>
-                    <button type="button" onclick=redirectToPage() >Login</button>
+                    <button type="button" onclick="redirectToPage()">Login</button>
                 </div>
             </div>
             <script>
@@ -142,3 +142,4 @@
             </script>
         </div>
     </body>
+    
