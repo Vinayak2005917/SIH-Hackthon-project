@@ -21,12 +21,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+#SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = 'django-insecure-x8c%34rlp04!sk!xfj1+-%9u@usqm!^&l)hq$)$v%h(&_4^8p1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG","False").lower == "true"
+#DEBUG = os.environ.get("DEBUG","False").lower == "true"
+DEBUG = True
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(" ")
+#ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(" ")
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -95,8 +98,8 @@ DATABASES = {
 }
 
 
-database_url = os.environ.get("DATABASE_URL")
-DATABASES ['default'] = dj_database_url.parse(database_url)
+#database_url = os.environ.get("DATABASE_URL")
+#DATABASES ['default'] = dj_database_url.parse(database_url)
 
 #postgresql://psdatabase_user:cTfp6u5hON6KNeNt4upjxCTtvWby0E9L@dpg-crdta4jv2p9s73cms2ug-a.singapore-postgres.render.com/psdatabase
 
