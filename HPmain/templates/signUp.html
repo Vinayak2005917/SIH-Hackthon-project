@@ -130,13 +130,26 @@
 </head>
 
 <script>
-    function redirectToStudent() {
+    function redirectToStudent(event) {
         event.preventDefault();
-        window.location.href = "{% url 'studinfo' %}";
+        // Example condition: check if the password is at least 8 characters long
+        const password = document.querySelector('.student input[type="password"]').value;
+        if (password.length >= 8) {
+            window.location.href = "{% url 'studinfo' %}";
+        } else {
+            alert('Password must be at least 8 characters long.');
+        }
     }
-    function redirectToTeacher() {
+
+    function redirectToTeacher(event) {
         event.preventDefault();
-        window.location.href = "{% url 'teachinfo' %}";
+        // Example condition: check if the email contains "teacher" (this is just an example)
+        const email = document.querySelector('.teacher input[type="email"]').value;
+        if (email.includes("teacher")) {
+            window.location.href = "{% url 'teachinfo' %}";
+        } else {
+            alert('Email must contain the word "teacher".');
+        }
     }
 </script>
 
@@ -146,16 +159,16 @@
             <h2>Student</h2>
             <form action="" method="post">
                 <div>
-                    <input type="text" name="" id="" placeholder="Name" required>
+                    <input type="text" name="student_name" id="student_name" placeholder="Name" required>
                 </div>
                 <div>
-                    <input type="email" name="" id="" placeholder="Email" required>
+                    <input type="email" name="student_email" id="student_email" placeholder="Email" required>
                 </div>
                 <div>
-                    <input type="password" name="" id="" placeholder="Password" required>
+                    <input type="password" name="student_password" id="student_password" placeholder="Password" required>
                 </div>
                 <div>
-                    <button type="submit" onclick=redirectToStudent() >Sign Up</button>
+                    <button type="submit" onclick="redirectToStudent(event)">Sign Up</button>
                     {% csrf_token %}
                 </div>
             </form>
@@ -166,17 +179,16 @@
                 <form action="" method="post">
                     {% csrf_token %}
                     <div>
-                        <input type="text" name="" id="" placeholder="Name" required>
+                        <input type="text" name="teacher_name" id="teacher_name" placeholder="Name" required>
                     </div>
                     <div>
-                        <input type="email" name="" id="" placeholder="Email" required>
+                        <input type="email" name="teacher_email" id="teacher_email" placeholder="Email" required>
                     </div>
                     <div>
-                        <input type="password" name="" id="" placeholder="Password" required>
+                        <input type="password" name="teacher_password" id="teacher_password" placeholder="Password" required>
                     </div>
                     <div>
-                        <button type="submit" onclick=redirectToTeacher()>Sign Up</button>
-
+                        <button type="submit" onclick="redirectToTeacher(event)">Sign Up</button>
                     </div>
                 </form>
             </div>
@@ -186,6 +198,7 @@
             <button id="coverBtn">Sign Up</button>
         </div>
     </div>
+</body>
     <script>
         const coverBtn = document.getElementById("coverBtn")
         const coverText = document.getElementById("coverText")
