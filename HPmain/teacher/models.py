@@ -5,10 +5,10 @@ class UploadedFile(models.Model):
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
 class Topic(models.Model):
-    topic_name = models.CharField(max_length=255)
-    topic_doc = models.CharField(max_length=255)
+    topic_name = models.CharField(max_length=255,)
+    topic_doc = models.CharField(max_length=255,)
     topic_desc = models.CharField(max_length=255,default='No description')
-    topic_time = models.CharField(max_length=10)
+    topic_time = models.CharField(max_length=10,)
 
     def __str__(self):
         return self.topic_name
