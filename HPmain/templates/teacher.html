@@ -298,11 +298,12 @@
         .canvasCard {
             display: grid;
             grid-template-columns: 1fr 1fr;
+            width: 100%;
         }
 
         .canvasCard div {
             width: 100%;
-            margin: auto;
+            margin: unset auto;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -719,6 +720,84 @@
         .topicPopUp img {
             width: 50px;
         }
+
+        #pathList {
+            padding: 30px;
+            text-align: left;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        #pathList h2 {
+            margin: 15px;
+            color: #393939;
+        }
+
+        #pathList ul {
+            margin: 10px;
+        }
+
+        #pathList li {
+            margin: 5px;
+        }
+
+        .chapterBox {
+            border: 2px dashed #9b9b9b;
+            border-radius: 12px;
+            margin: 15px auto;
+        }
+
+        .topStudentsBox {
+            width: 90%;
+            margin: 25px auto;
+            border: 2px dashed #666666;
+            display: grid;
+            grid-template-columns: repeat((3, 1fr));
+            grid-auto-flow: column;
+            text-align: left;
+            border-radius: 15px;
+        }
+
+        .topStudentsBox div {
+            margin: 10px;
+            padding: 5px;
+            text-align: center;
+        }
+
+        .topStudentsBox p {
+            color: #3c3c3c;
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+
+        .first p {
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        .second p {
+            font-size: 1.7rem;
+            font-weight: 700;
+        }
+
+        .third p {
+            font-size: 1.4rem;
+            font-weight: 750;
+        }
+
+        .studentCol {
+            display: flex;
+            justify-content: space-evenly;
+            flex-direction: column;
+            align-items: center;
+        }
+        .canvasBox2{
+            width: 75%;
+            margin: 25px auto;
+        }
     </style>
 </head>
 
@@ -777,10 +856,13 @@
                             </div>
                         </div>
                         <div class="canvasCard">
-                            <div>
+                            <div id="pathList">
+                                <h2 style="font-size: 1.6rem;">Chapters Added</h2>
+                                <div id="dashBoardChapterList">
 
+                                </div>
                             </div>
-                            <div>
+                            <div style="justify-content: start;">
                                 <canvas id="noOfStudents"></canvas>
                                 <p>Grades as per last test</p>
                             </div>
@@ -844,12 +926,17 @@
                     <header>
                         <h1>Analysis</h1>
                     </header>
-                    <div class="boxBody boxBodyUnderConstruction">
-                        <div class="UnderConstructionBox">
-                            <img src="https://teal-cat-7744f6.netlify.app/media/const%20with%20grey%20bg.png" alt="">
-                            <b>
-                                <p>Under Construction</p>
-                            </b>
+                    <div class="boxBody">
+                        <div>
+                            <h2
+                                style="text-align: center; font-size: 2rem; margin: 20px; color: #393939; font-weight: 800;">
+                                Best Performers</h2>
+                            <div id="topStudentsBox" class="topStudentsBox">
+
+                            </div>
+                            <div class="canvasBox2">
+                                <canvas id="scoreChart"></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -946,8 +1033,70 @@
                 }]
             }
         });
+
+        let scoreChart = document.getElementById("scoreChart").getContext("2d")
+        new Chart(scoreChart, {
+            type: 'bar',
+            data: {
+                labels: ["100-90", "89-80", "79-70", "69-60", "59-50", "49-40", "40-0"],
+                datasets: [{
+                    label: 'No of Students',
+                    data: [10, 35, 55, 7, 17, 5, 2],
+                    borderWidth: 1,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.7)',
+                        'rgba(255, 159, 64, 0.7)',
+                        'rgba(255, 205, 86, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(153, 102, 255, 0.7)',
+                        'rgba(201, 203, 207, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(255, 159, 64)',
+                        'rgb(255, 205, 86)',
+                        'rgb(75, 192, 192)',
+                        'rgb(54, 162, 235)',
+                        'rgb(153, 102, 255)',
+                        'rgb(201, 203, 207)',
+                    ],
+                    borderRadius: 3,
+                    hoverOffset: 5
+                }]
+            }
+        });
     </script>
     <script>
+        // Top Students
+        let topStudentNames = ["Aarav Sharma", "Ishita Patel", "Rohan Mehta", "Sneha Kapoor", "Vikram Rao", "Priya Iyer",
+            "Aditi Verma", "Karan Singh", "Anjali Nair", "Rahul Desai", "Pooja Gupta", "Siddharth Joshi"
+        ];
+
+        let topStudentsBox = document.getElementById("topStudentsBox")
+        topStudentsBox.innerHTML = ""
+        for (let i = 0; i < 3; i++) {
+            let mainDiv = document.createElement("div")
+            mainDiv.classList.add("studentCol")
+            for (let k = 0; k < 4; k++) {
+                let nameDiv = document.createElement("div")
+                if (i == 0) {
+                    if (k == 0) {
+                        nameDiv.classList.add("first")
+                    } else if (k == 1) {
+                        nameDiv.classList.add("second")
+                    } else if (k == 2) {
+                        nameDiv.classList.add("third")
+                    }
+                }
+                let nameP = document.createElement("p")
+                nameP.innerHTML = ((i * 4) + k + 1) + ". " + topStudentNames[(i * 4) + k]
+                nameDiv.appendChild(nameP)
+                mainDiv.appendChild(nameDiv)
+            }
+            topStudentsBox.appendChild(mainDiv)
+        }
+
         //Hero Btn
         let HeroBtn = document.getElementById("HeroBtn")
         HeroBtn.addEventListener("click", () => {
@@ -1062,8 +1211,7 @@
             })
         }
 
-
-        pathBtn.click()
+        analysisBtn.click()
 
         /// doc upload
         let uploadBtn = document.getElementById("uploadBtn")
@@ -1190,7 +1338,52 @@
                     TopicDiscription: "A description is a detailed account or explanation, conveying information, qualities, or characteristics of a subject or object"
                 }
             ]
-        }]
+        },
+        {
+            Name: "Laws Of Motion",
+            topics: [
+                {
+                    topicName: "Force",
+                    topicDoc: "force.pdf",
+                    topicTime: "1hrs",
+                    TopicDiscription: "A description is a detailed account or explanation, conveying information, qualities, or characteristics of a subject or object"
+                },
+                {
+                    topicName: "Gravity",
+                    topicDoc: "gravity.mp4",
+                    topicTime: "2hrs",
+                    TopicDiscription: "A description is a detailed account or explanation, conveying information, qualities, or characteristics of a subject or object"
+                },
+                {
+                    topicName: "Friction",
+                    topicDoc: "force.pdf",
+                    topicTime: "1hrs",
+                    TopicDiscription: "A description is a detailed account or explanation, conveying information, qualities, or characteristics of a subject or object"
+                }
+            ]
+        }
+        ]
+
+        let dashBoardChapterList = document.getElementById("dashBoardChapterList")
+        function updatedashBoardChapters() {
+            dashBoardChapterList.innerHTML = ""
+            for (let i = 0; i < chapterList.length; i++) {
+                let newchapterBox = document.createElement("div")
+                newchapterBox.classList.add("chapterBox")
+                let chapterBoxH2 = document.createElement("h2")
+                chapterBoxH2.innerHTML = chapterList[i].Name
+                newchapterBox.appendChild(chapterBoxH2)
+                let chapterBoxUl = document.createElement("ul")
+                for (let k = 0; k < chapterList[i].topics.length; k++) {
+                    let chapterBoxLi = document.createElement("li")
+                    chapterBoxLi.innerHTML = chapterList[i].topics[k].topicName
+                    chapterBoxUl.appendChild(chapterBoxLi)
+                }
+                newchapterBox.appendChild(chapterBoxUl)
+                dashBoardChapterList.appendChild(newchapterBox)
+            }
+        }
+        updatedashBoardChapters()
 
         let chapterName = document.getElementById("chapterName")
         let noOfTopics = document.getElementById("noOfTopics")
@@ -1205,9 +1398,9 @@
         let popUpTime = document.getElementById("popUpTime")
         let topicPopUp = document.getElementById("topicPopUp")
 
-        document.addEventListener("click",(e)=>{
-            if(topicPopUpBox.classList.contains("topicPopUpBox")){
-                if(e.target == topicPopUpBox){
+        document.addEventListener("click", (e) => {
+            if (topicPopUpBox.classList.contains("topicPopUpBox")) {
+                if (e.target == topicPopUpBox) {
                     topicPopUpBox.classList.remove("topicPopUpBox")
                     topicPopUpBox.classList.add("topicPopUpBoxOff")
                 }
@@ -1280,6 +1473,7 @@
             chapterInput.classList.add("inActiveBox")
             chapterPathBox.classList.remove("inActiveBox")
             topicDetailsBox.innerHTML = ""
+            updatedashBoardChapters()
         })
 
 

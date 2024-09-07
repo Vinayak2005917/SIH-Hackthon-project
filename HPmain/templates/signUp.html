@@ -130,28 +130,67 @@
 </head>
 
 <script>
+    // Define the arrays with student and teacher names
+    const student_names = [
+        "Veer", "Ullas", "Piyush", "Madhu", "Rahul", "Amit", "Shayam",
+        "Nitin", "Rahul", "Raj", "Rohit", "Sampreet", "Karan", "Harsh",
+        "Vinay", "Vikas", "Ankit", "Aditiya", "Jay", "Raju", "test"
+    ];
+
+    const teacher_names = [
+        "Nitin", "vinayak", "RJ", "test"
+    ];
+
+    function isValidEmail(email) {
+        // Simple regex for email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
     function redirectToStudent(event) {
         event.preventDefault();
-        // Example condition: check if the password is at least 8 characters long
-        const password = document.querySelector('.student input[type="password"]').value;
-        if (password.length >= 8) {
+        const name = document.querySelector('#student_name').value;
+        const email = document.querySelector('#student_email').value;
+        const password = document.querySelector('#student_password').value;
+
+        if (!isValidEmail(email)) {
+            alert('Invalid email format.');
+            return;
+        }
+
+        if (student_names.includes(name) && password === "student") {
             window.location.href = "{% url 'studinfo' %}";
         } else {
-            alert('Password must be at least 8 characters long.');
+            alert('Invalid student name or password.');
         }
     }
 
     function redirectToTeacher(event) {
         event.preventDefault();
-        // Example condition: check if the email contains "teacher" (this is just an example)
-        const email = document.querySelector('.teacher input[type="email"]').value;
-        if (email.includes("teacher")) {
+        const name = document.querySelector('#teacher_name').value;
+        const email = document.querySelector('#teacher_email').value;
+        const password = document.querySelector('#teacher_password').value;
+
+        if (!isValidEmail(email)) {
+            alert('Invalid email format.');
+            return;
+        }
+
+        if (teacher_names.includes(name) && password === "teacher") {
             window.location.href = "{% url 'teachinfo' %}";
         } else {
-            alert('Email must contain the word "teacher".');
+            alert('Invalid teacher name or password.');
         }
     }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelector('.student button').addEventListener('click', redirectToStudent);
+        document.querySelector('.teacher button').addEventListener('click', redirectToTeacher);
+    });
 </script>
+
+
+
 
 <body>
     <div class="container">
