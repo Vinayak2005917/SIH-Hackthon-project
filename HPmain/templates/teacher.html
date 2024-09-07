@@ -1095,7 +1095,7 @@
                     "File": file
                 })
             }
-            fetch('https://reqres.in/api/users', {
+            fetch('"login/teachinfo/upload_file"', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -1164,31 +1164,31 @@
                     topicName: "DNA",
                     topicDoc: "dna.mp4",
                     topicTime: "0.5hrs",
-                    TopicDiscription:"A description is a detailed account or explanation, conveying information, qualities, or characteristics of a subject or object"
+                    TopicDiscription: "A description is a detailed account or explanation, conveying information, qualities, or characteristics of a subject or object"
                 },
                 {
                     topicName: "RNA",
                     topicDoc: "rna.mp4",
                     topicTime: "1hrs",
-                    TopicDiscription:"A description is a detailed account or explanation, conveying information, qualities, or characteristics of a subject or object"
+                    TopicDiscription: "A description is a detailed account or explanation, conveying information, qualities, or characteristics of a subject or object"
                 },
                 {
                     topicName: "Carbohydrates",
                     topicDoc: "dna.mp4",
                     topicTime: "0.5hrs",
-                    TopicDiscription:"A description is a detailed account or explanation, conveying information, qualities, or characteristics of a subject or object"
+                    TopicDiscription: "A description is a detailed account or explanation, conveying information, qualities, or characteristics of a subject or object"
                 },
                 {
                     topicName: "Proteins",
                     topicDoc: "proteins.pdf",
                     topicTime: "2hrs",
-                    TopicDiscription:"A description is a detailed account or explanation, conveying information, qualities, or characteristics of a subject or object"
+                    TopicDiscription: "A description is a detailed account or explanation, conveying information, qualities, or characteristics of a subject or object"
                 },
                 {
                     topicName: "Vitamins",
                     topicDoc: "proteins.pdf",
                     topicTime: "0.5hrs",
-                    TopicDiscription:"A description is a detailed account or explanation, conveying information, qualities, or characteristics of a subject or object"
+                    TopicDiscription: "A description is a detailed account or explanation, conveying information, qualities, or characteristics of a subject or object"
                 }
             ]
         }]
@@ -1197,6 +1197,24 @@
         let noOfTopics = document.getElementById("noOfTopics")
         let topicDetailsBox = document.getElementById("topicDetails")
         let ChapterSubmitBtn = document.createElement("button")
+        let topicPopUpBox = document.getElementById("topicPopUpBox")
+        let popUpChapter = document.getElementById("popUpChapter")
+        let popUpTopic = document.getElementById("popUpTopic")
+        let popUpDiscription = document.getElementById("popUpDiscription")
+        let popUpLink = document.getElementById("popUpLink")
+        let popUpImg = document.getElementById("popUpImg")
+        let popUpTime = document.getElementById("popUpTime")
+        let topicPopUp = document.getElementById("topicPopUp")
+
+        document.addEventListener("click",(e)=>{
+            if(topicPopUpBox.classList.contains("topicPopUpBox")){
+                if(e.target == topicPopUpBox){
+                    topicPopUpBox.classList.remove("topicPopUpBox")
+                    topicPopUpBox.classList.add("topicPopUpBoxOff")
+                }
+            }
+        })
+
         ChapterSubmitBtn.classList.add("ChapterSubmitBtn")
         ChapterSubmitBtn.innerHTML = "Submit"
         ChapterSubmitBtn.addEventListener("click", () => {
@@ -1213,16 +1231,6 @@
             }
             console.log(newChapter)
             chapterList.push(newChapter)
-
-
-            let topicPopUpBox = document.getElementById("topicPopUpBox")
-            let popUpChapter = document.getElementById("popUpChapter")
-            let popUpTopic = document.getElementById("popUpTopic")
-            let popUpDiscription = document.getElementById("popUpDiscription")
-            let popUpLink = document.getElementById("popUpLink")
-            let popUpImg = document.getElementById("popUpImg")
-            let popUpTime = document.getElementById("popUpTime")
-            let topicPopUp = document.getElementById("topicPopUp")
 
 
             let chapterDiv = document.createElement("div")

@@ -5,18 +5,18 @@ from rest_framework import viewsets
 from .models import Chapter
 from .serializers import ChapterSerializer
 
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
 def teachinfo(request):
     return render(request, 'teacher.html')
 
 def upload_file(request):
     if request.method == 'POST':
-        form = UploadFileForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('upload_success')
-    else:
-        form = UploadFileForm()
-    return render(request, 'upload.html', {'form': form})
+        uploaded_file = request.FILES['file']
+        # Process the file as needed
+        return JsonResponse({'message': 'File uploaded successfully!'})
+    return JsonResponse({'error': 'Only POST method is allowed'}, status=400)
 
 def upload_success(request):
     return render(request, 'upload_success.html')
