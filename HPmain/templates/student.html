@@ -98,15 +98,36 @@
             transform: translateY(-5px);
         }
 
-        .box {
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        .box header {
+            padding: 40px;
+            background-color: white;
+        }
+
+        .box h1 {
+            font-size: 1.7rem;
+            text-align: center
         }
 
         .boxBody {
             padding: 20px;
+            height: 85vh;
+            overflow-y: scroll;
+        }
+
+        .boxBody::-webkit-scrollbar {
+            -webkit-appearance: none;
+            width: 5px;
+        }
+
+        .boxBody::-webkit-scrollbar-thumb {
+            width: 5px;
+            border-radius: 5px;
+            background-color: rgb(222, 222, 222);
+            cursor: pointer;
+        }
+
+        .boxBody::-webkit-scrollbar-track {
+            background-color: white;
         }
 
         .boxBodyUnderConstruction {
@@ -127,6 +148,11 @@
 
         .subjectBox {
             padding: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
 
         .subject {
@@ -141,104 +167,406 @@
         .inActiveBox {
             display: none;
         }
+
+        .ChapterPath {
+            width: 100%;
+            padding: 20px;
+            padding-bottom: 40px;
+            border-bottom: 2px dashed #D6D6D6;
+        }
+
+        .ChapterPath:last-child {
+            border: none;
+        }
+
+        .ChapterPath h2 {
+            text-align: center;
+            margin: 20px;
+            margin-bottom: 35px;
+        }
+
+        #chapterPathBox {
+            position: relative;
+        }
+
+        #chapterAddBtn {
+            background-image: url(https://teal-cat-7744f6.netlify.app/media/file-circle-plus-solid.svg);
+            background-position: center;
+            background-size: cover;
+            padding: 2px;
+            border: none;
+            outline: none;
+            width: 35px;
+            height: 30px;
+            position: absolute;
+            top: 12px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        .stageBox {
+            width: 80%;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .stage:nth-child(odd) {
+            transform: translateX(-90%);
+        }
+
+        .stage:nth-child(even) {
+            transform: translateX(90%);
+        }
+
+        .stage:nth-child(odd):active {
+            transform: translateX(-90%) translateY(6px);
+            box-shadow: 0px 2px 0px #393939;
+        }
+
+        .stage:nth-child(even):active {
+            transform: translateX(90%) translateY(6px);
+            box-shadow: 0px 2px 0px #393939;
+        }
+
+        .stage {
+            width: 40%;
+            height: 200px;
+            /* margin: 20px; */
+            border-radius: 7%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            background-color: #D6D6D6;
+            cursor: pointer;
+            box-shadow: 0px 10px 0px #9b9b9b;
+            transition: 300ms ease-in-out;
+            position: relative;
+        }
+
+        .stage h3 {
+            font-size: 1rem;
+        }
+
+        .stage p {
+            font-weight: 600;
+        }
+
+        .topicPopUpBox {
+            width: 100%;
+            height: 100vh;
+            padding-bottom: 7%;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.084);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .topicPopUpBoxOff {
+            width: 100%;
+            height: 100vh;
+            padding-bottom: 7%;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.084);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .topicPopUp {
+            width: 40%;
+            padding: 25px;
+            background-color: white;
+            border-radius: 25px;
+            text-align: center;
+        }
+
+        .topicPopUp h3,
+        .topicPopUp h2 {
+            margin: 25px;
+        }
+
+        .topicPopUp h2 {
+            font-size: 2rem;
+        }
+
+        .topicPopUp h3 {
+            font-size: 1.5rem;
+        }
+
+        #popUpDiscription {
+            margin: 50px 15px;
+        }
+
+        .topicPopUp div {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin: 20px auto;
+        }
+
+        .topicPopUp div p {
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .topicPopUp img {
+            width: 50px;
+        }
     </style>
 </head>
 
 <body>
-<main>
-    <div class="container">
-        <section class="S1">
-            <header>
-                <h1>Hackathon</h1>
-            </header>
-            <nav>
-                <button class="activeBtn" id="homeBtn">
-                    <img src="https://teal-cat-7744f6.netlify.app/media/home%20icon.svg" alt="">
-                    <p>Home</p>
-                </button>
-                <button class="inActiveBtn" id="pathBtn">
-                    <img src="https://teal-cat-7744f6.netlify.app/media/path%20icon.svg" alt="">
-                    <p>Path</p>
-                </button>
-                <button class="inActiveBtn" id="settingsBtn">
-                    <img src="https://teal-cat-7744f6.netlify.app/media/setting%20icon.svg" alt="">
-                    <p>Settings</p>
-                </button>
-            </nav>
-        </section>
-        <section class="S2">
-            <div class="box" id="studentDashboard">
-                <header style="text-align: center;">
-    <h1>Student Dashboard</h1>
-</header>
-            </div>
-            <div class="box inActiveBox" id="pathBox">
+    <main>
+        <div class="container">
+            <section class="S1">
                 <header>
-                    <h1>Learning Path</h1>
+                    <h1>Hackathon</h1>
                 </header>
-                <div class="boxBody boxBodyUnderConstruction">
-                    <div class="UnderConstructionBox">
-                        <img src="https://teal-cat-7744f6.netlify.app/media/const%20with%20grey%20bg.png" alt="">
-                        <b>
-                            <p>Under Construction</p>
-                        </b>
+                <nav>
+                    <button class="activeBtn" id="homeBtn">
+                        <img src="https://teal-cat-7744f6.netlify.app/media/home%20icon.svg" alt="">
+                        <p>Home</p>
+                    </button>
+                    <button class="inActiveBtn" id="pathBtn">
+                        <img src="https://teal-cat-7744f6.netlify.app/media/path%20icon.svg" alt="">
+                        <p>Path</p>
+                    </button>
+                    <button class="inActiveBtn" id="docsBtn">
+                        <img src="https://teal-cat-7744f6.netlify.app/media/file-solid.svg" alt="">
+                        <p>Documents</p>
+                    </button>
+                    <button class="inActiveBtn" id="questionBtn">
+                        <img src="https://teal-cat-7744f6.netlify.app/media/question-solid.svg" alt="">
+                        <p>Questions</p>
+                    </button>
+                    <button class="inActiveBtn" id="settingsBtn">
+                        <img src="https://teal-cat-7744f6.netlify.app/media/setting%20icon.svg" alt="">
+                        <p>Settings</p>
+                    </button>
+                </nav>
+            </section>
+            <section class="S2">
+                <div class="box" id="studentDashboard">
+                    <header style="text-align: center;">
+                        <h1>Student Dashboard</h1>
+                    </header>
+                </div>
+                <div class="box inActiveBox" id="docBox">
+                    <header>
+                        <h1>Documents</h1>
+                    </header>
+                    <div class="boxBody boxBodyUnderConstruction">
+                        <div class="UnderConstructionBox">
+                            <img src="https://teal-cat-7744f6.netlify.app/media/const%20with%20grey%20bg.png" alt="">
+                            <b>
+                                <p>Under Construction</p>
+                            </b>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="box inActiveBox" id="settingsBox">
-                <header>
-                    <h1>Settings</h1>
-                </header>
-                <div class="boxBody boxBodyUnderConstruction">
-                    <div class="UnderConstructionBox">
-                        <img src="https://teal-cat-7744f6.netlify.app/media/const%20with%20grey%20bg.png" alt="">
-                        <b>
-                            <p>Under Construction</p>
-                        </b>
+                <div class="box inActiveBox" id="pathBox">
+                    <header>
+                        <h1>Learning Path</h1>
+                    </header>
+                    <div class="boxBody">
+                        <div id="chapterPathBox">
+
+                        </div>
                     </div>
                 </div>
+                <div class="box inActiveBox" id="questionBox">
+                    <header>
+                        <h1>Questions</h1>
+                    </header>
+                    <div class="boxBody boxBodyUnderConstruction">
+                        <div class="UnderConstructionBox">
+                            <img src="https://teal-cat-7744f6.netlify.app/media/const%20with%20grey%20bg.png" alt="">
+                            <b>
+                                <p>Under Construction</p>
+                            </b>
+                        </div>
+                    </div>
+                </div>
+                <div class="box inActiveBox" id="settingsBox">
+                    <header>
+                        <h1>Settings</h1>
+                    </header>
+                    <div class="boxBody boxBodyUnderConstruction">
+                        <div class="UnderConstructionBox">
+                            <img src="https://teal-cat-7744f6.netlify.app/media/const%20with%20grey%20bg.png" alt="">
+                            <b>
+                                <p>Under Construction</p>
+                            </b>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="S3">
+                <header>
+                    <h2 style="text-align: center; margin: 40px;">Subjects</h2>
+                </header>
+                <div class="subjectBox" id="subjectBox">
+                    <div class="subject">
+                        <p>Science</p>
+                    </div>
+                    <div class="subject">
+                        <p>Mathematics</p>
+                    </div>
+                    <div class="subject">
+                        <p>English</p>
+                    </div>
+                    <div class="subject">
+                        <p>Hindi</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <div class="topicPopUpBoxOff" id="topicPopUpBox">
+        <div class="topicPopUp" id="topicPopUp">
+            <h2 id="popUpChapter">Biomolecules</h2>
+            <h3 id="popUpTopic">Proteins</h3>
+            <p id="popUpDiscription">Proteins are essential molecules made of amino acids that perform various
+                functions in the body, including building and repairing tissues, acting as enzymes, and
+                supporting immune responses. They are found in foods like meat, fish, and legumes, and are
+                crucial for overall health and growth.</p>
+            <div>
+                <a href="" id="popUpLink"><img src="https://teal-cat-7744f6.netlify.app/media/file-solid.svg" alt=""
+                        id="popUpImg"></a>
+                <div>
+                    <p id="popUpTime">Time: 2hrs</p>
+                </div>
             </div>
-        </section>
-        <section class="S3">
-            <header>
-       <h2 style="text-align: center;">Subjects</h2>
-    </header>
-            <div class="subjectBox" id="subjectBox">
-                <div class="subject"><p>Science</p></div>
-                <div class="subject"><p>Mathematics</p></div>
-                <div class="subject"><p>English</p></div>
-                <div class="subject"><p>Hindi</p></div>
-            </div>
-        </section>
+        </div>
     </div>
-</main>
-<script>
-let pathBox = document.getElementById("pathBox")
-let settingsBox = document.getElementById("settingsBox")
-let Boxes = [pathBox, settingsBox]
+    </div>
+    <script>
+        let studentDashboard = document.getElementById("studentDashboard")
+        let docBox = document.getElementById("docBox")
+        let pathBox = document.getElementById("pathBox")
+        let questionBox = document.getElementById("questionBox")
+        let settingsBox = document.getElementById("settingsBox")
+        let Boxes = [studentDashboard, docBox, pathBox, questionBox, settingsBox]
 
-let homeBtn = document.getElementById("homeBtn")
-let pathBtn = document.getElementById("pathBtn")
-let settingsBtn = document.getElementById("settingsBtn")
-let buttons = [homeBtn, pathBtn, settingsBtn]
+        let homeBtn = document.getElementById("homeBtn")
+        let docsBtn = document.getElementById("docsBtn")
+        let pathBtn = document.getElementById("pathBtn")
+        let questionBtn = document.getElementById("questionBtn")
+        let settingsBtn = document.getElementById("settingsBtn")
+        let buttons = [homeBtn, docsBtn, pathBtn, questionBtn, settingsBtn]
 
-for (let i = 0; i < buttons.length; i++) {
-    let btn = buttons[i]
-    btn.addEventListener("click", () => {
-        for (let k = 0; k < buttons.length; k++) {
-            buttons[k].classList.remove("activeBtn")
-            buttons[k].classList.add("inActiveBtn")
-            if (k < Boxes.length) {
-                Boxes[k].classList.add("inActiveBox")
+        for (let i = 0; i < buttons.length; i++) {
+            let btn = buttons[i]
+            btn.addEventListener("click", () => {
+                for (let k = 0; k < buttons.length; k++) {
+                    buttons[k].classList.remove("activeBtn")
+                    buttons[k].classList.add("inActiveBtn")
+                    Boxes[k].classList.add("inActiveBox")
+                }
+                btn.classList.remove("inActiveBtn")
+                btn.classList.add("activeBtn")
+                Boxes[i].classList.remove("inActiveBox")
+            })
+        }
+
+        let chapterList = [{
+            Name: "Biomolecules",
+            topics: [
+                {
+                    topicName: "DNA",
+                    topicDoc: "dna.mp4",
+                    topicTime: "0.5hrs",
+                    TopicDiscription: "A description is a detailed account or explanation, conveying information, qualities, or characteristics of a subject or object"
+                },
+                {
+                    topicName: "RNA",
+                    topicDoc: "rna.mp4",
+                    topicTime: "1hrs",
+                    TopicDiscription: "A description is a detailed account or explanation, conveying information, qualities, or characteristics of a subject or object"
+                },
+                {
+                    topicName: "Carbohydrates",
+                    topicDoc: "dna.mp4",
+                    topicTime: "0.5hrs",
+                    TopicDiscription: "A description is a detailed account or explanation, conveying information, qualities, or characteristics of a subject or object"
+                },
+                {
+                    topicName: "Proteins",
+                    topicDoc: "proteins.pdf",
+                    topicTime: "2hrs",
+                    TopicDiscription: "A description is a detailed account or explanation, conveying information, qualities, or characteristics of a subject or object"
+                },
+                {
+                    topicName: "Vitamins",
+                    topicDoc: "proteins.pdf",
+                    topicTime: "0.5hrs",
+                    TopicDiscription: "A description is a detailed account or explanation, conveying information, qualities, or characteristics of a subject or object"
+                }
+            ]
+        }]
+
+        let topicPopUpBox = document.getElementById("topicPopUpBox")
+        let popUpChapter = document.getElementById("popUpChapter")
+        let popUpTopic = document.getElementById("popUpTopic")
+        let popUpDiscription = document.getElementById("popUpDiscription")
+        let popUpLink = document.getElementById("popUpLink")
+        let popUpImg = document.getElementById("popUpImg")
+        let popUpTime = document.getElementById("popUpTime")
+        let topicPopUp = document.getElementById("topicPopUp")
+
+        for (let x = 0; x < chapterList.length; x++) {
+            let newChapter = chapterList[x]
+            let chapterDiv = document.createElement("div")
+            chapterDiv.classList.add("ChapterPath")
+            let chapterH2 = document.createElement("h2")
+            chapterH2.innerHTML = newChapter.Name
+            chapterDiv.appendChild(chapterH2)
+            let stageBox = document.createElement("div")
+            stageBox.classList.add("stageBox")
+            for (let i = 0; i < newChapter.topics.length; i++) {
+                let stage = document.createElement("div")
+                stage.classList.add("stage")
+                let topicName = document.createElement("h3")
+                topicName.innerHTML = newChapter.topics[i].topicName
+                let timeP = document.createElement("p")
+                timeP.innerHTML = "Time: " + newChapter.topics[i].topicTime
+
+                stage.appendChild(topicName)
+                stage.appendChild(timeP)
+
+                stage.addEventListener("click", () => {
+                    topicPopUpBox.classList.remove("topicPopUpBoxOff")
+                    topicPopUpBox.classList.add("topicPopUpBox")
+                    popUpChapter.innerHTML = newChapter.Name
+                    popUpTopic.innerHTML = newChapter.topics[i].topicName
+                    popUpDiscription.innerHTML = newChapter.topics[i].TopicDiscription
+                    popUpLink.setAttribute("src", newChapter.topics[i].topicDoc)
+                    popUpTime.innerHTML = "Time: " + newChapter.topics[i].topicTime
+
+                })
+
+                stageBox.appendChild(stage)
             }
+            chapterDiv.appendChild(stageBox)
+            chapterPathBox.appendChild(chapterDiv)
         }
-        btn.classList.remove("inActiveBtn")
-        btn.classList.add("activeBtn")
-        if (i > 0) {
-            Boxes[i - 1].classList.remove("inActiveBox")
-        }
-    })
-}
+
+        document.addEventListener("click", (e) => {
+            if (topicPopUpBox.classList.contains("topicPopUpBox")) {
+                if (e.target == topicPopUpBox) {
+                    topicPopUpBox.classList.remove("topicPopUpBox")
+                    topicPopUpBox.classList.add("topicPopUpBoxOff")
+                }
+            }
+        })
     </script>
 </body>
 

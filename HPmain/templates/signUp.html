@@ -129,12 +129,22 @@
     </style>
 </head>
 
+<script>
+    function redirectToStudent() {
+        event.preventDefault();
+        window.location.href = "{% url 'studinfo' %}";
+    }
+    function redirectToTeacher() {
+        event.preventDefault();
+        window.location.href = "{% url 'teachinfo' %}";
+    }
+</script>
+
 <body>
     <div class="container">
         <div class="student">
             <h2>Student</h2>
-            <form action="{% url 'studinfo' %}" method="post">
-                {% csrf_token %}
+            <form action="" method="post">
                 <div>
                     <input type="text" name="" id="" placeholder="Name" required>
                 </div>
@@ -145,14 +155,15 @@
                     <input type="password" name="" id="" placeholder="Password" required>
                 </div>
                 <div>
-                    <button type="submit">Sign Up</button>
+                    <button type="submit" onclick=redirectToStudent() >Sign Up</button>
+                    {% csrf_token %}
                 </div>
             </form>
         </div>
         <div class="teacher">
             <div class="student">
                 <h2>Teacher</h2>
-                <form action="{% url 'teachinfo' %}" method="post">
+                <form action="" method="post">
                     {% csrf_token %}
                     <div>
                         <input type="text" name="" id="" placeholder="Name" required>
@@ -164,7 +175,8 @@
                         <input type="password" name="" id="" placeholder="Password" required>
                     </div>
                     <div>
-                        <button type="submit">Sign Up</button>
+                        <button type="submit" onclick=redirectToTeacher()>Sign Up</button>
+
                     </div>
                 </form>
             </div>
