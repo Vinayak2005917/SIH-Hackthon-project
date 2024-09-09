@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teacher</title>
+    <title>Teacher Dashboard</title>
     <style>
         * {
             margin: 0;
@@ -849,10 +849,10 @@
                             <div class="teacherProfile">
                                 <img src="https://teal-cat-7744f6.netlify.app/media/user-solid.svg" class="profileIcon"
                                     alt="">
-                                <p>Ajoy Gupta</p>
+                                <p>Welcome, {{ teacher_name }} </p>
                             </div>
                             <div class="teacherProfile">
-                                <p>Mathematics</p>
+                                <p>Teacher subject</p>
                             </div>
                         </div>
                         <div class="canvasCard">
@@ -1041,7 +1041,7 @@
                 labels: ["100-90", "89-80", "79-70", "69-60", "59-50", "49-40", "40-0"],
                 datasets: [{
                     label: 'No of Students',
-                    data: [10, 35, 55, 7, 17, 5, 2],
+                    data: [10, 35, 55, 7, 17, 5, 2,10,100,50],
                     borderWidth: 1,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.7)',
@@ -1069,9 +1069,17 @@
     </script>
     <script>
         // Top Students
-        let topStudentNames = ["Aarav Sharma", "Ishita Patel", "Rohan Mehta", "Sneha Kapoor", "Vikram Rao", "Priya Iyer",
-            "Aditi Verma", "Karan Singh", "Anjali Nair", "Rahul Desai", "Pooja Gupta", "Siddharth Joshi"
-        ];
+        let topStudentNames = ["Madhu","Ullas",
+    "Piyush","Veer",
+    "Rahul","Amit",
+    "Shayam","Nitin",
+    "Rahul","Raj",
+    "Rohit","Sampreet",
+    "Karan","Harsh",
+    "Vinay","Vikas",
+    "Ankit","Aditiya",
+    "Jay","Raju",
+    "test"];
 
         let topStudentsBox = document.getElementById("topStudentsBox")
         topStudentsBox.innerHTML = ""
@@ -1104,7 +1112,11 @@
         })
 
         // student serach feature
-        let StudentNames = ["test"]
+        let StudentNames = ["Veer","Ullas","Piyush","Madhu",
+                            "Rahul","Amit","Shayam","Nitin",
+                            "Rahul","Raj","Rohit","Sampreet",
+                            "Karan","Harsh","Vinay","Vikas",
+                            "Ankit","Aditiya","Jay","Raju","test"]
         StudentNames = StudentNames.map((x) => x = x.toLowerCase())
         let studentBox = document.getElementById("studentBox")
         let search = document.getElementById("search")
@@ -1276,89 +1288,63 @@
             chapterInput.classList.add("inActiveBox")
             chapterPathBox.classList.remove("inActiveBox")
         })
-        let docsList = [
-            "report annual 2023.pdf",
-            "marketing strategy.pdf",
-            "presentation slides.pdf",
-            "meeting notes Sept.pdf",
-            "user manual.pdf",
-            "company logo.png",
-            "team photo.png",
-            "project diagram.png",
-            "product design.png",
-            "banner ad.png",
-            "holiday trip.mp4",
-            "product demo.mp4",
-            "training video.mp4",
-            "company intro.mp4",
-            "customer feedback.mp4",
-            "event schedule.pdf",
-            "business plan.pdf",
-            "infographics.png",
-            "employee list.pdf",
-            "portfolio showcase.pdf",
-            "certificate design.png",
-            "marketing campaign.mp4",
-            "tutorial video.mp4",
-            "performance report.pdf",
-            "process flowchart.png"
-        ];
+        let docsList = [];
 
         let chapterList = [{
-            Name: "Biomolecules",
+            Name: "Linked Lists",
             topics: [
                 {
-                    topicName: "DNA",
-                    topicDoc: "dna.mp4",
-                    topicTime: "0.5hrs",
-                    TopicDiscription: "A description is a detailed account or explanation, conveying information, qualities, or characteristics of a subject or object"
+                    topicName: "Classification",
+                    topicDoc: "Linked_List_type.mp4",
+                    topicTime: "5hrs",
+                    TopicDiscription: "The main types of linked lists are: Singly linked list Each node in this list contains a reference to the next node in the sequence, and the last node points to null. Doubly linked list Each node in this list contains references to both the next and previous nodes, allowing traversal in both directions. Circular linked list The last node in this list points back to the first node, forming a circular structure. Sorted linked list This list maintains its elements in sorted order, typically ascending or descending. "
                 },
                 {
-                    topicName: "RNA",
-                    topicDoc: "rna.mp4",
+                    topicName: "Traversing",
+                    topicDoc: "Traversing.pdf",
                     topicTime: "1hrs",
-                    TopicDiscription: "A description is a detailed account or explanation, conveying information, qualities, or characteristics of a subject or object"
+                    TopicDiscription: "Traversal of a Linked List. Traversing a linked list means to go through the linked list by following the links from one node to the next. Traversal of linked lists is typically done to search for a specific node, and read or modify the node's content, remove the node, or insert a node right before or after that node."
                 },
                 {
-                    topicName: "Carbohydrates",
-                    topicDoc: "dna.mp4",
-                    topicTime: "0.5hrs",
-                    TopicDiscription: "A description is a detailed account or explanation, conveying information, qualities, or characteristics of a subject or object"
-                },
-                {
-                    topicName: "Proteins",
-                    topicDoc: "proteins.pdf",
+                    topicName: "Doubly Linked lists",
+                    topicDoc: "what are doubly linked lists.mp4",
                     topicTime: "2hrs",
-                    TopicDiscription: "A description is a detailed account or explanation, conveying information, qualities, or characteristics of a subject or object"
+                    TopicDiscription: " a doubly linked list is a linked data structure that consists of a set of sequentially linked records called nodes. Each node contains three fields: two link fields (references to the previous and to the next node in the sequence of nodes) and one data field."
                 },
                 {
-                    topicName: "Vitamins",
-                    topicDoc: "proteins.pdf",
-                    topicTime: "0.5hrs",
-                    TopicDiscription: "A description is a detailed account or explanation, conveying information, qualities, or characteristics of a subject or object"
+                    topicName: "Circular linked lists",
+                    topicDoc: "circular ll.pdf",
+                    topicTime: "3hrs",
+                    TopicDiscription: "Circular Linked List is a variation of Linked list in which the first element points to the last element and the last element points to the first element. Both Singly Linked List and Doubly Linked List can be made into a circular linked list."
+                },
+                {
+                    topicName: "Applications of Linked lists",
+                    topicDoc: "App. of LL.mp4",
+                    topicTime: "5hrs",
+                    TopicDiscription: "Linked lists are widely used in various applications due to their flexibility and efficiency. Some common use cases include: Dynamic Memory Allocation"
                 }
             ]
         },
         {
-            Name: "Laws Of Motion",
+            Name: "Binary Trees",
             topics: [
                 {
-                    topicName: "Force",
-                    topicDoc: "force.pdf",
-                    topicTime: "1hrs",
-                    TopicDiscription: "A description is a detailed account or explanation, conveying information, qualities, or characteristics of a subject or object"
-                },
-                {
-                    topicName: "Gravity",
-                    topicDoc: "gravity.mp4",
+                    topicName: "Properties of Binary trees",
+                    topicDoc: "Properties.mp4",
                     topicTime: "2hrs",
-                    TopicDiscription: "A description is a detailed account or explanation, conveying information, qualities, or characteristics of a subject or object"
+                    TopicDiscription: "Binary trees can be divided into the following types: Perfect binary tree: Every internal node has two child nodes. All the leaf nodes are at the same level. Full binary tree: Every parent node or an internal node has either exactly two children or no child nodes."
                 },
                 {
-                    topicName: "Friction",
-                    topicDoc: "force.pdf",
-                    topicTime: "1hrs",
-                    TopicDiscription: "A description is a detailed account or explanation, conveying information, qualities, or characteristics of a subject or object"
+                    topicName: "Binary Tree Traversals",
+                    topicDoc: "traversal Binary tree.mp4",
+                    topicTime: "5hrs",
+                    TopicDiscription: "Traversing a binary tree means visiting each node in the tree and processing its data. There are three main traversal techniques: in-order, pre-order, and post-order traversal."
+                },
+                {
+                    topicName: "Inorder, postorder, preorder",
+                    topicDoc: "type of traversing.pdf",
+                    topicTime: "6hrs",
+                    TopicDiscription: "Inorder traversal: traverse from the left subtree, then to the root, then to the right subtree. Preorder traversal: traverse from the root, then to the left subtree, then to the right subtree. Postorder traversal: traverse from the left subtree, then to the right subtree, then to the root."
                 }
             ]
         }

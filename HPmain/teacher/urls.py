@@ -4,16 +4,20 @@ from django.urls import include
 from rest_framework.routers import DefaultRouter
 from .views import ChapterViewSet
 from .views import upload_file, upload_success
+from .views import ChapterViewSet, teacher_dashboard, upload_file, upload_success
+
+
 
 urlpatterns = [
     path("teachinfo/", views.teachinfo, name = 'teachinfo'),
     path('upload_file/', views.upload_file, name='upload_file'),
     path('upload_success/', views.upload_success, name='upload_success'),
+    path('dashboard/', teacher_dashboard, name='teacher_dashboard'),
 ]
 
 router = DefaultRouter()
 router.register(r'chapters', ChapterViewSet)
 
-urlpatterns = [
+urlpatterns += [
     path('api/', include(router.urls)),
 ]

@@ -3,19 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'profile.css' %}">
     <title>Contributors</title>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            margin: 0;
+            position: relative;
+        }
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .container {
+            margin: auto;
+            padding: 1.25rem;
+            width: 50rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            border-radius: 1rem;
+            background: transparent;
+            filter: drop-shadow( 0 0 20px #d8dbde4a);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, .15);
+        }
+
+        .profile-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            border-radius: 3rem;
+            background: transparent;
+            padding: 1rem;
+            box-shadow: 0 25px 50px 0 rgba(248, 246, 246, 0.2), 0 5px 15px 0 rgba(0, 0, 0, .15);
+            box-sizing: border-box;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .profile-img img {
+            width: 4rem;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .profile-name {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .full-name {
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+
+        .user-name {
+            color: rgb(244, 142, 9);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+
+    </style>
+
+
 </head>
 <body>
     <video autoplay muted loop>
-        <source src="{% static 'cbg.mp4' %}" type="video/mp4">
+        <source src="https://incredible-cupcake-cf150c.netlify.app/bara%20kala%20ched.mp4" type="video/mp4">
     </video>
     <div class="container">
         <div class="profile-card">
             <div class="profile">
                 <div class="profile-img">
-                    <img src="./Emiya_kiritsugu.webp" alt="profile_picture">
+                    <img src="https://incredible-cupcake-cf150c.netlify.app/boy.jpeg" alt="profile_picture">
                 </div>
                 <div class="profile-name">
                     <p class="full-name">Vinayak Mishra</p>
@@ -26,7 +108,7 @@
         <div class="profile-card">
             <div class="profile">
                 <div class="profile-img">
-                    <img src="./images.jpeg" alt="profile_picture">
+                    <img src="https://incredible-cupcake-cf150c.netlify.app/boy.jpeg" alt="profile_picture">
                 </div>
                 <div class="profile-name">
                     <p class="full-name">Vasisht Suresh</p>
@@ -37,7 +119,7 @@
         <div class="profile-card">
             <div class="profile">
                 <div class="profile-img">
-                    <img src="./Megumi_Fushiguro_29.webp" alt="profile_picture">
+                    <img src="https://incredible-cupcake-cf150c.netlify.app/girl.png" alt="profile_picture">
                 </div>
                 <div class="profile-name">
                     <p class="full-name">Zainab Farooq</p>
@@ -48,7 +130,7 @@
         <div class="profile-card">
             <div class="profile">
                 <div class="profile-img">
-                    <img src="./images (1).jpeg" alt="profile_picture">
+                    <img src="https://incredible-cupcake-cf150c.netlify.app/girl.png" alt="profile_picture">
                 </div>
                 <div class="profile-name">
                     <p class="full-name">Unnati</p>
@@ -59,7 +141,7 @@
         <div class="profile-card">
             <div class="profile">
                 <div class="profile-img">
-                    <img src="./profile-img.png" alt="profile_picture">
+                    <img src="https://incredible-cupcake-cf150c.netlify.app/girl.png" alt="profile_picture">
                 </div>
                 <div class="profile-name">
                     <p class="full-name">Umme Kulsum</p>
@@ -70,7 +152,7 @@
         <div class="profile-card">
             <div class="profile">
                 <div class="profile-img">
-                    <img src="./download.jpeg" alt="profile_picture">
+                    <img src="https://incredible-cupcake-cf150c.netlify.app/boy.jpeg" alt="profile_picture">
                 </div>
                 <div class="profile-name">
                     <p class="full-name">Piyush Kumar</p>

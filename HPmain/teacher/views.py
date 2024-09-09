@@ -28,3 +28,13 @@ class ChapterViewSet(viewsets.ModelViewSet):
     queryset = Chapter.objects.all()
     serializer_class = ChapterSerializer
 
+
+def teacher_dashboard(request):
+    # Assuming you have a way to get the teacher's name, e.g., from the logged-in user
+    teacher_name = request.user.get_full_name()  # or however you get the teacher's name
+    context = {
+        'teacher_name': teacher_name,
+        # Add other context variables if needed
+    }
+    return render(request, 'teacher.html', context)
+
