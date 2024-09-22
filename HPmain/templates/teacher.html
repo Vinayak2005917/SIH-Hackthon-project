@@ -794,7 +794,8 @@
             flex-direction: column;
             align-items: center;
         }
-        .canvasBox2{
+
+        .canvasBox2 {
             width: 75%;
             margin: 25px auto;
         }
@@ -1041,7 +1042,7 @@
                 labels: ["100-90", "89-80", "79-70", "69-60", "59-50", "49-40", "40-0"],
                 datasets: [{
                     label: 'No of Students',
-                    data: [10, 35, 55, 7, 17, 5, 2,10,100,50],
+                    data: [10, 35, 55, 7, 17, 5, 2, 10, 100, 50],
                     borderWidth: 1,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.7)',
@@ -1069,17 +1070,17 @@
     </script>
     <script>
         // Top Students
-        let topStudentNames = ["Madhu","Ullas",
-    "Piyush","Veer",
-    "Rahul","Amit",
-    "Shayam","Nitin",
-    "Rahul","Raj",
-    "Rohit","Sampreet",
-    "Karan","Harsh",
-    "Vinay","Vikas",
-    "Ankit","Aditiya",
-    "Jay","Raju",
-    "test"];
+        let topStudentNames = ["Madhu", "Ullas",
+            "Piyush", "Veer",
+            "Rahul", "Amit",
+            "Shayam", "Nitin",
+            "Rahul", "Raj",
+            "Rohit", "Sampreet",
+            "Karan", "Harsh",
+            "Vinay", "Vikas",
+            "Ankit", "Aditiya",
+            "Jay", "Raju",
+            "test"];
 
         let topStudentsBox = document.getElementById("topStudentsBox")
         topStudentsBox.innerHTML = ""
@@ -1112,11 +1113,11 @@
         })
 
         // student serach feature
-        let StudentNames = ["Veer","Ullas","Piyush","Madhu",
-                            "Rahul","Amit","Shayam","Nitin",
-                            "Rahul","Raj","Rohit","Sampreet",
-                            "Karan","Harsh","Vinay","Vikas",
-                            "Ankit","Aditiya","Jay","Raju","test"]
+        let StudentNames = ["Veer", "Ullas", "Piyush", "Madhu",
+            "Rahul", "Amit", "Shayam", "Nitin",
+            "Rahul", "Raj", "Rohit", "Sampreet",
+            "Karan", "Harsh", "Vinay", "Vikas",
+            "Ankit", "Aditiya", "Jay", "Raju", "test"]
         StudentNames = StudentNames.map((x) => x = x.toLowerCase())
         let studentBox = document.getElementById("studentBox")
         let search = document.getElementById("search")
@@ -1226,53 +1227,51 @@
         analysisBtn.click()
 
         /// doc upload
-        let uploadBtn = document.getElementById("uploadBtn")
-        let inputFile = document.getElementById("inputFile")
-        let uploadBox = document.getElementById("uploadBox")
-        uploadBtn.addEventListener("click", () => {
-            inputFile.click()
-        })
-        inputFile.addEventListener("change", () => {
-            let file = inputFile.files[0]
-            let nameBox = document.createElement("div")
-            nameBox.classList.add("uploadedFile")
-            let fileName = document.createElement("p")
-            let loading = document.createElement("div")
-            loading.classList.add("loading")
-            fileName.innerHTML = file.name
-            nameBox.appendChild(fileName)
-            nameBox.appendChild(loading)
-            uploadBox.insertBefore(nameBox, uploadBox.children[1])
+        let uploadBtn = document.getElementById("uploadBtn");
+        let inputFile = document.getElementById("inputFile");
+        let uploadBox = document.getElementById("uploadBox");
 
-            let options = {
-                method: "POST",
-                headers: {
-                    "Content-type": "application/json"
-                },
-                body: JSON.stringify({
-                    "File_Name": fileName,
-                    "File": file
-                })
-            }
-            fetch('https://reqres.in/api/users', {
+        uploadBtn.addEventListener("click", () => {
+            inputFile.click();
+        });
+
+        inputFile.addEventListener("change", () => {
+            let file = inputFile.files[0];
+            let nameBox = document.createElement("div");
+            nameBox.classList.add("uploadedFile");
+            let fileName = document.createElement("p");
+            let loading = document.createElement("div");
+            loading.classList.add("loading");
+            fileName.innerHTML = file.name;
+            nameBox.appendChild(fileName);
+            nameBox.appendChild(loading);
+            uploadBox.insertBefore(nameBox, uploadBox.children[1]);
+
+            let formData = new FormData();
+            formData.append("file", file); // Append the file to FormData
+
+            const csrftoken = document.cookie.split(';').find(c => c.trim().startsWith('csrftoken=')).split('=')[1];
+
+            fetch('/media/upload/', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'X-CSRFToken': csrftoken
                 },
-                body: JSON.stringify({
-                    "name": fileName,
-                    "file": file
-                })
+                body: formData 
             })
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
                 .then(data => {
-                    console.log(data)
-                    loading.classList.remove("loading")
-                    loading.classList.add("uploadFinsied")
+                    console.log(data);
+                    loading.classList.remove("loading");
+                    loading.classList.add("uploadFinished");
                 })
                 .catch(error => console.error('Error:', error));
-        })
-
+        });
 
 
         /// adding chapters and stuff

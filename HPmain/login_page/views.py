@@ -28,7 +28,7 @@ def teacher_signup(request):
         print(f"Teacher Name: {teacher_name}")
 
         # Redirect to a success page or render a template
-        return redirect('teacher/')  # Replace 'success_page' with the name of your success URL pattern
+        return redirect('teacher.html')  # Replace 'success_page' with the name of your success URL pattern
 
     return render(request, 'teacher.html')
 
