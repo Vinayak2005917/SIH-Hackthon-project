@@ -4,18 +4,59 @@
 
 This is a Django-based web application developed for the Smart India Hackathon (SIH). The platform serves as an educational content management system that facilitates file processing, user management, and content delivery for educational institutions.
 
+## 📸 Screenshots
+
+### Authentication System
+![Login Page](screenshots/login%20page.png)
+*Main login page for accessing the platform*
+
+![Teacher Login](screenshots/Teacher%20login.png)
+*Teacher-specific login interface*
+
+![Student Login](screenshots/Student%20login.png)
+*Student login interface*
+
+### Teacher Dashboard & Features
+![Teacher Dashboard](screenshots/Teacher%20Dashboard%20Homepage.png)
+*Teacher dashboard homepage with navigation and overview*
+
+![Teacher File Upload](screenshots/Teachers%20upload%20file.png)
+*File upload interface for teachers to upload educational content*
+
+![Teacher Learning Paths](screenshots/Teacher%20learning%20Paths.png)
+*Teacher interface for managing learning paths and content*
+
+![Teacher Learning Path Sample 2](screenshots/teachers%20learning%20path%20sample%202.png)
+*Detailed view of learning path management*
+
+![Teacher Learning Path 3](screenshots/teacher's%20learning%20path%203.png)
+*Advanced learning path configuration options*
+
+![Teacher Analysis](screenshots/Teachers%20analysis.png)
+*Analytics and progress tracking for teachers*
+
+### Student Features
+![Student Learning Paths](screenshots/students%20learning%20paths.png)
+*Student interface showing available learning paths and courses*
+
 ## 🚀 Features
 
 ### Core Functionality
 - **User Management**: Separate login systems for Students, Teachers, and Site Administrators
+  - Multi-role authentication system as shown in our [login interfaces](screenshots/login%20page.png)
 - **File Processing**: Support for multiple file formats including PDF, Excel (.xlsx), and BibTeX (.bib)
+  - Demonstrated in our [file upload system](screenshots/Teachers%20upload%20file.png)
 - **Content Management**: Chapter and topic organization system
+  - Visible in our [learning path management](screenshots/Teacher%20learning%20Paths.png)
 - **File Upload System**: Secure file upload with storage management
-- **RESTful API**: Django REST Framework integration for API endpoints
+- **Analytics & Tracking**: Comprehensive progress monitoring and analytics
+  - Featured in our [teacher analytics dashboard](screenshots/Teachers%20analysis.png)
 
 ### User Roles
 1. **Students**: Access to educational content and materials
+   - Student interface shown in [learning paths view](screenshots/students%20learning%20paths.png)
 2. **Teachers**: Content upload, chapter/topic management, and dashboard access
+   - Teacher features demonstrated in [dashboard](screenshots/Teacher%20Dashboard%20Homepage.png) and [content management](screenshots/teachers%20learning%20path%20sample%202.png)
 3. **Site Administrators**: Platform administration and oversight
 
 ### File Processing Capabilities
@@ -124,6 +165,22 @@ python manage.py runserver
 
 The application will be available at `http://localhost:8000`
 
+## 🚀 Quick Start Guide
+
+### 1. Access the Application
+Navigate to `http://localhost:8000` to see the main login page:
+![Login Page](screenshots/login%20page.png)
+
+### 2. Teacher Quick Start
+- Login through the teacher portal
+- Access your dashboard to upload content and manage learning paths
+- Use the analytics features to track student progress
+
+### 3. Student Quick Start  
+- Login through the student portal
+- Browse available learning paths and educational content
+- Access your personalized learning materials
+
 ## 🌐 API Endpoints
 
 ### Authentication
@@ -189,15 +246,39 @@ The application uses environment variables for configuration:
 ## 📚 Usage
 
 ### For Teachers
-1. Access the teacher portal at `/teacher/teachinfo/`
-2. Upload educational content through the file upload system
-3. Organize content into chapters and topics
-4. Monitor uploaded files through the dashboard
+
+#### 1. Login to Teacher Portal
+![Teacher Login Process](screenshots/Teacher%20login.png)
+Access the teacher portal through the dedicated login interface.
+
+#### 2. Dashboard Overview
+![Teacher Dashboard](screenshots/Teacher%20Dashboard%20Homepage.png)
+The teacher dashboard provides access to all teaching tools and content management features.
+
+#### 3. Upload Educational Content
+![File Upload System](screenshots/Teachers%20upload%20file.png)
+Upload various file formats (PDF, Excel, BibTeX) through the secure file upload system.
+
+#### 4. Manage Learning Paths
+![Learning Path Management](screenshots/Teacher%20learning%20Paths.png)
+Create and organize learning paths for students with structured content delivery.
+
+![Advanced Learning Paths](screenshots/teachers%20learning%20path%20sample%202.png)
+Configure detailed learning paths with multiple topics and resources.
+
+#### 5. Track Student Progress
+![Analytics Dashboard](screenshots/Teachers%20analysis.png)
+Monitor student progress and analyze learning outcomes through comprehensive analytics.
 
 ### For Students
-1. Access the student portal at `/student/`
-2. Browse available educational content
-3. Access organized chapters and topics
+
+#### 1. Student Login
+![Student Login Interface](screenshots/Student%20login.png)
+Access the student portal through the dedicated student login interface.
+
+#### 2. Access Learning Paths
+![Student Learning Interface](screenshots/students%20learning%20paths.png)
+Browse and access organized learning paths and educational content.
 
 ### For Administrators
 1. Access admin panel at `/admin/`

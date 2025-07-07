@@ -13,7 +13,7 @@ def login(request):
 def teachinfo(request):
     return render(request, 'teacher.html', context)
 
-from .models import Teacher  # Assuming you have a Teacher model
+from .models import Teacher
 
 def teacher_signup(request):
     if request.method == 'POST':
@@ -21,16 +21,11 @@ def teacher_signup(request):
         teacher_email = request.POST.get('teacher_email')
         teacher_password = request.POST.get('teacher_password')
         
-        # Save the teacher to the database
         Teacher.objects.create(name=teacher_name, email=teacher_email, password=teacher_password)
         
-        # Optionally, you can print or use the variable
         print(f"Teacher Name: {teacher_name}")
 
-        # Redirect to a success page or render a template
-        return redirect('teacher.html')  # Replace 'success_page' with the name of your success URL pattern
+        return redirect('teachinfo')
 
     return render(request, 'teacher.html')
-
-from django.shortcuts import render
 

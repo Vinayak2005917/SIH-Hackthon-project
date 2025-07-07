@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-import dj_database_url
 from pathlib import Path
 import os
 
@@ -46,7 +45,6 @@ INSTALLED_APPS = [
     'student',
     'teacher',
     'homepage',
-    'rest_framework',
     'login_page'
 ]
 
@@ -65,7 +63,7 @@ ROOT_URLCONF = 'HPmain.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR, 'templates','static'],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -77,9 +75,6 @@ TEMPLATES = [
         },
     },
 ]
-
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "static"]
 
 WSGI_APPLICATION = 'HPmain.wsgi.application'
 
@@ -97,17 +92,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'userDB.sqlite3',
     },
 }
-
-database_url = "sqlite:///db.sqlite3"
-database2_url = "sqlite:///userDB.sqlite3"
-
-#DATABASES = {}
-#DATABASES['default'] = dj_database_url.parse(database_url)
-#DATABASES['second_db'] = dj_database_url.parse(database2_url)
-#DATABASE_ROUTERS = ['testing.routers.TestingRouter']
-
-
-#postgresql://psdatabase_user:cTfp6u5hON6KNeNt4upjxCTtvWby0E9L@dpg-crdta4jv2p9s73cms2ug-a.singapore-postgres.render.com/psdatabase
 
 
 # Password validation
@@ -144,7 +128,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

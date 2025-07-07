@@ -17,7 +17,7 @@ teacher_names = [
     "RJ","test"
 ]
 
-{
+student_scores = {
     'Veer': 47,'Ullas': 63,
     'Piyush': 82,'Madhu': 99,
     'Rahul': 77,'Amit': 53,
