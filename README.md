@@ -7,56 +7,56 @@ This is a Django-based web application developed for the Smart India Hackathon (
 ## 📸 Screenshots
 
 ### Authentication System
-![Login Page](screenshots/login-page.png)
+![Login Page](Screenshots/login-page.png)
 *Main login page for accessing the platform*
 
-![Teacher Login](screenshots/teacher-login.png)
+![Teacher Login](Screenshots/teacher-login.png)
 *Teacher-specific login interface*
 
-![Student Login](screenshots/student-login.png)
+![Student Login](Screenshots/student-login.png)
 *Student login interface*
 
 ### Teacher Dashboard & Features
-![Teacher Dashboard](screenshots/teacher-dashboard-homepage.png)
+![Teacher Dashboard](Screenshots/teacher-dashboard-homepage.png)
 *Teacher dashboard homepage with navigation and overview*
 
-![Teacher File Upload](screenshots/teachers-upload-file.png)
+![Teacher File Upload](Screenshots/teachers-upload-file.png)
 *File upload interface for teachers to upload educational content*
 
-![Teacher Learning Paths](screenshots/teacher-learning-paths.png)
+![Teacher Learning Paths](Screenshots/teacher-learning-paths.png)
 *Teacher interface for managing learning paths and content*
 
-![Teacher Learning Path Sample 2](screenshots/teachers-learning-path-sample-2.png)
+![Teacher Learning Path Sample 2](Screenshots/teachers-learning-path-sample-2.png)
 *Detailed view of learning path management*
 
-![Teacher Learning Path 3](screenshots/teachers-learning-path-3.png)
+![Teacher Learning Path 3](Screenshots/teachers-learning-path-3.png)
 *Advanced learning path configuration options*
 
-![Teacher Analysis](screenshots/teachers-analysis.png)
+![Teacher Analysis](Screenshots/teachers-analysis.png)
 *Analytics and progress tracking for teachers*
 
 ### Student Features
-![Student Learning Paths](screenshots/students-learning-paths.png)
+![Student Learning Paths](Screenshots/students-learning-paths.png)
 *Student interface showing available learning paths and courses*
 
 ## 🚀 Features
 
 ### Core Functionality
 - **User Management**: Separate login systems for Students, Teachers, and Site Administrators
-  - Multi-role authentication system as shown in our [login interfaces](screenshots/login%20page.png)
+  - Multi-role authentication system as shown in our [login interfaces](Screenshots/login-page.png)
 - **File Processing**: Support for multiple file formats including PDF, Excel (.xlsx), and BibTeX (.bib)
-  - Demonstrated in our [file upload system](screenshots/Teachers%20upload%20file.png)
+  - Demonstrated in our [file upload system](Screenshots/teachers-upload-file.png)
 - **Content Management**: Chapter and topic organization system
-  - Visible in our [learning path management](screenshots/Teacher%20learning%20Paths.png)
+  - Visible in our [learning path management](Screenshots/teacher-learning-paths.png)
 - **File Upload System**: Secure file upload with storage management
 - **Analytics & Tracking**: Comprehensive progress monitoring and analytics
-  - Featured in our [teacher analytics dashboard](screenshots/Teachers%20analysis.png)
+  - Featured in our [teacher analytics dashboard](Screenshots/teachers-analysis.png)
 
 ### User Roles
 1. **Students**: Access to educational content and materials
-   - Student interface shown in [learning paths view](screenshots/students%20learning%20paths.png)
+   - Student interface shown in [learning paths view](Screenshots/students-learning-paths.png)
 2. **Teachers**: Content upload, chapter/topic management, and dashboard access
-   - Teacher features demonstrated in [dashboard](screenshots/Teacher%20Dashboard%20Homepage.png) and [content management](screenshots/teachers%20learning%20path%20sample%202.png)
+   - Teacher features demonstrated in [dashboard](Screenshots/teacher-dashboard-homepage.png) and [content management](Screenshots/teachers-learning-path-sample-2.png)
 3. **Site Administrators**: Platform administration and oversight
 
 ### File Processing Capabilities
