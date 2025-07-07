@@ -7,36 +7,36 @@ This is a Django-based web application developed for the Smart India Hackathon (
 ## 📸 Screenshots
 
 ### Authentication System
-![Login Page](Screenshots/login-page.png)
+<img src="Screenshots/login-page.png" width="400"/>
 *Main login page for accessing the platform*
 
-![Teacher Login](Screenshots/teacher-login.png)
+<img src="Screenshots/teacher-login.png" width="400"/>
 *Teacher-specific login interface*
 
-![Student Login](Screenshots/student-login.png)
+<img src="Screenshots/student-login.png" width="400"/>
 *Student login interface*
 
 ### Teacher Dashboard & Features
-![Teacher Dashboard](Screenshots/teacher-dashboard-homepage.png)
+<img src="Screenshots/teacher-dashboard-homepage.png" width="400"/>
 *Teacher dashboard homepage with navigation and overview*
 
-![Teacher File Upload](Screenshots/teachers-upload-file.png)
+<img src="Screenshots/teachers-upload-file.png" width="400"/>
 *File upload interface for teachers to upload educational content*
 
-![Teacher Learning Paths](Screenshots/teacher-learning-paths.png)
+<img src="Screenshots/teacher-learning-paths.png" width="400"/>
 *Teacher interface for managing learning paths and content*
 
-![Teacher Learning Path Sample 2](Screenshots/teachers-learning-path-sample-2.png)
+<img src="Screenshots/teachers-learning-path-sample-2.png" width="400"/>
 *Detailed view of learning path management*
 
-![Teacher Learning Path 3](Screenshots/teachers-learning-path-3.png)
+<img src="Screenshots/teachers-learning-path-3.png" width="400"/>
 *Advanced learning path configuration options*
 
-![Teacher Analysis](Screenshots/teachers-analysis.png)
+<img src="Screenshots/teachers-analysis.png" width="400"/>
 *Analytics and progress tracking for teachers*
 
 ### Student Features
-![Student Learning Paths](Screenshots/students-learning-paths.png)
+<img src="Screenshots/students-learning-paths.png" width="400"/>
 *Student interface showing available learning paths and courses*
 
 ## 🚀 Features
